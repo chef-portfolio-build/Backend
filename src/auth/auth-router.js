@@ -13,20 +13,28 @@ const Users = require('./auth-model');
 
 // POST register new chef
 router.post('/register', validateNewUser, (req, res) => {
-  const user = req.body;
-  const hash = bcrypt.hashSync(user.password, HashFactor);
-  user.password = hash;
+  // const errors = validationResult(req)
+  // if (!errors.isEmpty()) {
+  //   return res.status(422).json({ error: errors.array() })
+  // } else {
+    const name = req.body.username;
+    const email = req.body.email;
+    const user = req.body;
+    const hash = bcrypt.hashSync(user.password, HashFactor);
+    user.password = hash;
   
-  Users.addUser(user)
-    .then(newUser => {
-      console.log(newUser);
-      const token = generateToken(newUser);
-      res.status(201).json({ user: newUser, token});
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    })
+    Users.addUser(user)
+      .then(newUser => {
+        console.log(newUser);
+        const token = generateToken(newUser);
+        res.status(201).json({ user: newUser, token});
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      })
+  // }
+ 
   
 });
 
