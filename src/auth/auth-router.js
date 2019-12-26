@@ -1,24 +1,18 @@
 const router = require('express').Router();
 require('dotenv').config();
-const secret = require('../config/secrets.js');
-const validateNewUser = require('./validNewUser');
 const HashFactor = parseInt(process.env.HASH) || 8;
+// const secret = require('../config/secrets.js');
+const validateNewUser = require('./validNewUser');
+const validateLogin = require('./validLoginUser');
 
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-
+const jwt = require('./jwtAccess');
 const Users = require('./auth-model');
 
 
 
 // POST register new chef
 router.post('/register', validateNewUser, (req, res) => {
-  // const errors = validationResult(req)
-  // if (!errors.isEmpty()) {
-  //   return res.status(422).json({ error: errors.array() })
-  // } else {
-    const name = req.body.username;
-    const email = req.body.email;
     const user = req.body;
     const hash = bcrypt.hashSync(user.password, HashFactor);
     user.password = hash;
@@ -26,27 +20,24 @@ router.post('/register', validateNewUser, (req, res) => {
     Users.addUser(user)
       .then(newUser => {
         console.log(newUser);
-        const token = generateToken(newUser);
+        const token = jwt.generateToken(newUser);
         res.status(201).json({ user: newUser, token});
       })
       .catch(err => {
         console.log(err);
         res.status(500).json(err);
       })
-  // }
- 
-  
 });
 
 // login user
-router.post('/login', (req, res) => {
+router.post('/login', validateLogin, (req, res) => {
   const { username, password } = req.body;
 
-  Users.findByName({ username })
+  Users.findBy({ username })
     .first()
     .then(u => {
       if (u && bcrypt.compareSync(password, u.password)) {
-        const token = generateToken(u);
+        const token = jwt.generateToken(u);
 
         res.status(200).json({ message: `Welcome back ${u.username }`, user: u.username,token});
       } else {
@@ -59,19 +50,7 @@ router.post('/login', (req, res) => {
     });
 });
 
-// user token function
-function generateToken(user) {
-  const JWT_SECRET = process.env.JWT_SECRET 
-  const payload = {
-    subject: user.id,
-    username: user.username,
-  };
-  const options = {
-    expiresIn: '1w',
-  }
-
-  return jwt.sign(payload, secret.jwtSecret, options)
-}
 
 module.exports = router;
+
 

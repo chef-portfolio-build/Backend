@@ -6,7 +6,8 @@ module.exports = {
   addUser,
   findById,
   findByEmail,
-  findByName
+  findByName,
+  findBy
 };
 
 function findAll() {
@@ -16,6 +17,10 @@ function findAll() {
 
 function findPosts() {
   return db('posts')
+}
+
+function findBy(filter) {
+  return db('users').where(filter);
 }
 
 function addUser(user) {
@@ -31,7 +36,9 @@ function addUser(user) {
 function findByName(username) {
   return db('users')
     .select('username')
-    .where({ username })
+    .where({
+      username
+    })
     .first();
 }
 
@@ -39,7 +46,9 @@ function findByName(username) {
 function findByEmail(email) {
   return db('users')
     .select('email')
-    .where({ email })
+    .where({
+      email
+    })
     .first();
 }
 
@@ -48,6 +57,8 @@ function findByEmail(email) {
 function findById(id) {
   return db('users')
     .select('id', 'username')
-    .where({ id })
+    .where({
+      id
+    })
     .first();
 }
