@@ -1,22 +1,24 @@
 const db = require('../database/dbConfig');
 
 module.exports = {
-  find,
+  findAll,
   findPosts,
-  add,
+  addUser,
   findById,
-  findBy,
+  findByEmail,
+  findByName
 };
 
-function find() {
+function findAll() {
   return db('users');
 }
+
 
 function findPosts() {
   return db('posts')
 }
 
-function add(user) {
+function addUser(user) {
   return db('users')
     .insert(user, 'id')
     .then(ids => {
@@ -25,18 +27,23 @@ function add(user) {
     });
 }
 
-// async function add(user) {
-//   const [id] = await db('users').insert(user);
-
-//   return findById(id) 
-// }
-// function find() {
-//   return db('users').select('id', 'username');
-// }
-
-function findBy(filter) {
-  return db('users').where(filter);
+// for validation
+function findByName(username) {
+  return db('users')
+    .select('username')
+    .where({ username })
+    .first();
 }
+
+// for validation
+function findByEmail(email) {
+  return db('users')
+    .select('email')
+    .where({ email })
+    .first();
+}
+
+
 
 function findById(id) {
   return db('users')
