@@ -1,4 +1,4 @@
-const db = require('../database/dbConfig');
+const db = require('../../database/dbConfig');
 
 module.exports = {
   getUserPosts,
@@ -6,7 +6,8 @@ module.exports = {
   updatePost,
   removePost,
   find,
-  getLatestPosts
+  getLatestPosts,
+  findById
 }
 
 // delte later experimenting
@@ -40,4 +41,10 @@ function removePost(id) {
   return db('posts')
     .where('id', id)
     .del();
+}
+
+function findById(id) {
+  return db('posts')
+    .where({ id })
+    .first();
 }
