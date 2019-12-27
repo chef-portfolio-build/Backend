@@ -7,7 +7,9 @@ module.exports = {
   findById,
   findByEmail,
   findByName,
-  findBy
+  findBy,
+  removeUser,
+  editById
 };
 
 function findAll() {
@@ -52,8 +54,6 @@ function findByEmail(email) {
     .first();
 }
 
-
-
 function findById(id) {
   return db('users')
     .select('id', 'username')
@@ -61,4 +61,17 @@ function findById(id) {
       id
     })
     .first();
+}
+
+function removeUser(id) {
+  return db('users')
+    .where({ id })
+    .del();
+}
+
+// Edit user info
+function editById(id, update) {
+  return db('users')
+    .where({ id })
+    .update(update, '*');
 }

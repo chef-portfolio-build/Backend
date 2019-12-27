@@ -9,13 +9,14 @@ module.exports = {
 
 // generate new JWT token
 function generateToken(user) {
-  const JWT_SECRET = process.env.JWT_SECRET 
+  const JWT_SECRET = process.env.JWT_SECRET;
+  
   const payload = {
     subject: user.id,
     username: user.username,
   };
   const options = {
-    expiresIn: '1w',
+    expiresIn: '7d',
   }
 
   return jwt.sign(payload, JWT_SECRET, options)
