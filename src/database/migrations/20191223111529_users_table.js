@@ -11,6 +11,7 @@ exports.up = function(knex) {
       tbl.string('email', 128)
         .unique();
     })
+    // work place, website link, first last name
 };
 
 exports.down = function(knex) {

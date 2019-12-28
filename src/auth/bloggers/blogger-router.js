@@ -1,12 +1,15 @@
 const router = require('express').Router();
 const Post = require('./blogger-model');
-const restricted = require('../middleware/auth-middleware');
+// const restricted = require('../middleware/auth-middleware');
+const jwt = require('../../auth/middleware/jwtAccess');
 
 // pass authorization to headers
-router.get('/posts', restricted, (req, res) => {
-  // insert an id
-  Post.getLatestPosts()
+router.get('/postsbyuserid/', jwt.checkToken(), (req, res) => {
+  console.log('This is token: ', req.user.subject)
+  const id = req.user.subject;
+  Post.getLatestPosts(id)
     .then(post => {
+      console.log(post)
       res.status(200).json(post)
     })
     .catch(err => {
@@ -15,7 +18,7 @@ router.get('/posts', restricted, (req, res) => {
     });
 });
 
-// get by id
+// get by id single post
 router.get('/posts/:id', (req, res) => {
   const { id } =req.params;
   Post.findById(id)

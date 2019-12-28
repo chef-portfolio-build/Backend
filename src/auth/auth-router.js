@@ -10,7 +10,49 @@ const bcrypt = require('bcryptjs');
 const jwt = require('./middleware/jwtAccess');
 const Users = require('./auth-model');
 
-
+/**
+    * @api {post} https://chef-portfolio1-bw.herokuapp.com/api/auth/register Create a Chef Blogger User
+    * @apiVersion 0.1.0
+    * @apiName Create
+    * @apiGroup Auth
+    * @apiPermission authenticate a blog user register
+    *
+    * @apiParam (Request body) {String} username The user name, min 5
+    * @apiParam (Request body) {String} password The user password, min 5
+    * @apiParam (Request body) {String} email The user email
+    * @apiExample {js} Example usage, required: 
+    * Minimum of 5 characters!
+    * {
+    *   "username": "thunderkebap",
+    *   "password": "nhhHUde^Fd7",
+    *   "email": "thunder@kebap.com"
+    * }
+    *
+    * @apiSuccessExample {json} Success example
+    * HTTP/1.1 200 OK
+    *{
+    *   "user": {
+    *   "id": 19,
+    *   "username": "thunderkebap"
+    *},
+    * "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxOSwidXNlcm5hbWUiOiJlcmFscCIsImlhdCI6MTU3NzQ4NTk0MSwiZXhwIjoxNTc4MDkwNzQxfQ.rHx8rKLqhZnzgBzDgPHXNH8z8Ger9xen95PPKEbsJ9I"
+    *}
+    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/auth/register
+    * 
+    * @apiErrorExample {json} List User exist
+    * {
+    * "errors": [
+    *   {
+    *     "username": "Username Already Exists!"
+    *   },
+    *   {
+    *     "email": "Email Already Exist!"
+    *   }
+    * ]
+    *}
+    * @apiErrorExample {json} List error
+    * HTTP/1.1 500 Internal Server Error
+    **/
 
 // POST register new chef
 router.post('/register', validateNewUser, (req, res) => {

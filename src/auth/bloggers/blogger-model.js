@@ -21,10 +21,10 @@ function getUserPosts(user_id) {
     .where({ user_id });
 }
 // experimenting
-function getLatestPosts() {
+// select * from posts where user_id = 1
+function getLatestPosts(id) {
   return db('posts')
-    .select('user_id')
-    .join('users', 'posts.user_id', '=', 'users.id')
+    .where('user_id', id)
 }
 
 function insertPost(post) {

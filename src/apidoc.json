@@ -1,0 +1,12 @@
+{
+  "name": "Chef Portfolio",
+  "version": "0.1.0",
+  "description": "API Documentation for Chef Portfolio",
+  "apidoc": {
+    "title": "Chef Portfolio API Docs",
+    "url" : "https://chef-portfolio1-bw.herokuapp.com/"
+  },
+  "template": {
+    "forceLanguage": "en"
+  }
+}

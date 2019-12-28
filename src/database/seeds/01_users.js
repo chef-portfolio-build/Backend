@@ -22,6 +22,12 @@ exports.seed = function(knex, Promise) {
           username: 'susan',
           email: 'susan@email.com',
           password: 'dorwssap'
+        },
+        {
+          id: 4,
+          username: 'eralp',
+          email: 'eralp@email.com',
+          password: 'password'
         }
       ]);
     });
