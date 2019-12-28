@@ -30,7 +30,9 @@ function checkToken() {
         res.status(401).json({ errors: [{ token: 'Invalid token, you will need to log back in'}]});
       } else {
         req.user = decoded;
-        console.log(decoded)
+
+        // console.log(decoded.username)
+        // console.log(decoded.subject)
         next();
       }
     });

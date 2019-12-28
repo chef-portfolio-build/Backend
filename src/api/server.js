@@ -56,7 +56,7 @@ server.use(express.static('public'));
 server.use('/api/', posts);
 
 server.use('/api/auth', authRouter);
-server.use('/api/user', authenticate, bloggerRouter);
+server.use('/api/private', authenticate, bloggerRouter);
 
 server.get('/', (req, res) => {
   res.send("<h2>It's working</h2>");
