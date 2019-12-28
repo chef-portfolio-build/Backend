@@ -3,8 +3,7 @@ require('dotenv').config();
 
 module.exports = {
   generateToken,
-  // checkToken,
-  // checkRole
+  checkToken,
 }
 
 // generate new JWT token
@@ -23,5 +22,19 @@ function generateToken(user) {
 }
 
 function checkToken() {
-  
+  return (req, res, next) => {
+    const token = req.headers.authorization;
+
+    token && jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+      if (err) {
+        res.status(401).json({ errors: [{ token: 'Invalid token, you will need to log back in'}]});
+      } else {
+        req.user = decoded;
+        console.log(decoded)
+        next();
+      }
+    });
+    //No Token, No Pass
+    !token && res.status(401).json({ error: "No Token Provided, you will need to Login" });
+  }
 }
