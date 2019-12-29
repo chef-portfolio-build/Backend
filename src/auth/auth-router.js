@@ -10,8 +10,9 @@ const bcrypt = require('bcryptjs');
 const jwt = require('./middleware/jwtAccess');
 const Users = require('./auth-model');
 
+// POST register new chef
 /**
-    * @api {post} https://chef-portfolio1-bw.herokuapp.com/api/auth/register Create a Chef Blogger User
+    * @api {post} https://chef-portfolio1-bw.herokuapp.com/api/auth/register Register new user
     * @apiVersion 0.1.0
     * @apiName Create
     * @apiGroup Auth
@@ -73,6 +74,44 @@ router.post('/register', validateNewUser, (req, res) => {
 });
 
 // login user
+/**
+    * @api {post} https://chef-portfolio1-bw.herokuapp.com/api/auth/login Login User
+    * @apiVersion 0.1.0
+    * @apiName Post
+    * @apiGroup Auth
+    * @apiPermission authenticate a blog auth user login
+    *
+    * @apiParam (Request body) {String} username The user name, min 5
+    * @apiParam (Request body) {String} password The user password, min 5
+    * @apiExample {json} Example usage, required: 
+    * Minimum of 5 characters!
+    * {
+    *   "username": "thunderkebap",
+    *   "password": "nhhHUde^Fd7",
+    * }
+    * @apiSuccess
+    * message Welcome back user
+    * user username
+    * 
+    * @apiSuccessExample {json} Success example
+    * HTTP/1.1 200 OK
+    *{
+    *    "message": "Welcome back jonathan",
+    *    "user": "jonathan",
+    *},
+    * "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxOSwidXNlcm5hbWUiOiJlcmFscCIsImlhdCI6MTU3NzQ4NTk0MSwiZXhwIjoxNTc4MDkwNzQxfQ.rHx8rKLqhZnzgBzDgPHXNH8z8Ger9xen95PPKEbsJ9I"
+    *}
+    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/auth/login
+    * 
+    * @apiErrorExample {json} List User exist
+    * HTTP/1.1 401 Internal Server Error
+    *{
+    *   "message": "Wrong login credentials."
+    *}
+    * @apiErrorExample {json} List error
+    * HTTP/1.1 500 Internal Server Error
+    **/
+// login user
 router.post('/login', validateLogin, (req, res) => {
   const { username, password } = req.body;
 
@@ -93,7 +132,49 @@ router.post('/login', validateLogin, (req, res) => {
     });
 });
 
-// Edit user information POST
+// Edit user information PUT
+/**
+    * @api {put} https://chef-portfolio1-bw.herokuapp.com/api/auth/:id Change user info
+    * @apiVersion 0.1.0
+    * @apiName Write
+    * @apiGroup Auth
+    * @apiPermission authenticate a blog auth user login
+    * 
+    * @apiParam {Number} id Users unique ID.
+    *
+    * @apiParam (Request body) {String} username The user name
+    * @apiParam (Request body) {String} password The user password
+    * @apiParam (Request body) {String} email The user email
+    * @apiSuccessExample {json} Example usage, pass any field that needs update: 
+    * {
+    *   "username": "thunderkebap",
+    *   "password": "nhhHUde^Fd7",
+    *   "email": "email@tobeupdated.com"
+    * }
+    * 
+    * @apiParam (Request header) {String} Authorization Pass it to headers
+    * @apiParam (Request header) {String} token Pass it to headers
+    * 
+    * 
+    * @apiSuccessExample {json} Success example
+    * HTTP/1.1 200 OK
+    *{
+    *    "message": "Welcome back jonathan",
+    *    "user": "jonathan",
+    *},
+    * "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxOSwidXNlcm5hbWUiOiJlcmFscCIsImlhdCI6MTU3NzQ4NTk0MSwiZXhwIjoxNTc4MDkwNzQxfQ.rHx8rKLqhZnzgBzDgPHXNH8z8Ger9xen95PPKEbsJ9I"
+    *}
+    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/auth/login
+    * 
+    * @apiErrorExample {json} List User exist
+    * HTTP/1.1 401 Internal Server Error
+    *{
+    *   "message": "Wrong login credentials."
+    *}
+    * @apiErrorExample {json} List error
+    * HTTP/1.1 500 Internal Server Error
+    **/
+// Edit user information PUT
 router.put('/:id', restricted, (req, res) => {
   const { id } = req.params;
   const changes = req.body;
@@ -114,7 +195,7 @@ router.put('/:id', restricted, (req, res) => {
     });
 });
 
-// Only for admins
+// Only for admins to delete a user
 // Delete user, provide a login token in the header.
 router.delete('/:id', restricted, (req, res, next) => {
   const { id } = req.params;

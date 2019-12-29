@@ -2,7 +2,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "https://chef-portfolio1-bw.herokuapp.com/api/auth/register",
-    "title": "Create a Chef Blogger User",
+    "title": "Register new user",
     "version": "0.1.0",
     "name": "Create",
     "group": "Auth",
@@ -64,6 +64,186 @@ define({ "api": [
         {
           "title": "List User exist",
           "content": "{\n\"errors\": [\n  {\n    \"username\": \"Username Already Exists!\"\n  },\n  {\n    \"email\": \"Email Already Exist!\"\n  }\n]\n}",
+          "type": "json"
+        },
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/auth/auth-router.js",
+    "groupTitle": "Auth"
+  },
+  {
+    "type": "post",
+    "url": "https://chef-portfolio1-bw.herokuapp.com/api/auth/login",
+    "title": "Login User",
+    "version": "0.1.0",
+    "name": "Post",
+    "group": "Auth",
+    "permission": [
+      {
+        "name": "authenticate a blog auth user login"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Request body": [
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>The user name, min 5</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>The user password, min 5</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage, required: ",
+        "content": "Minimum of 5 characters!\n{\n  \"username\": \"thunderkebap\",\n  \"password\": \"nhhHUde^Fd7\",\n}",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Welcome back user user username</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success example",
+          "content": "HTTP/1.1 200 OK\n{\n   \"message\": \"Welcome back jonathan\",\n   \"user\": \"jonathan\",\n},\n\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxOSwidXNlcm5hbWUiOiJlcmFscCIsImlhdCI6MTU3NzQ4NTk0MSwiZXhwIjoxNTc4MDkwNzQxfQ.rHx8rKLqhZnzgBzDgPHXNH8z8Ger9xen95PPKEbsJ9I\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "https://chef-portfolio1-bw.herokuapp.com/api/auth/login"
+      }
+    ],
+    "error": {
+      "examples": [
+        {
+          "title": "List User exist",
+          "content": "HTTP/1.1 401 Internal Server Error\n{\n  \"message\": \"Wrong login credentials.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/auth/auth-router.js",
+    "groupTitle": "Auth"
+  },
+  {
+    "type": "put",
+    "url": "https://chef-portfolio1-bw.herokuapp.com/api/auth/:id",
+    "title": "Change user info",
+    "version": "0.1.0",
+    "name": "Write",
+    "group": "Auth",
+    "permission": [
+      {
+        "name": "authenticate a blog auth user login"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Users unique ID.</p>"
+          }
+        ],
+        "Request body": [
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>The user name</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>The user password</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>The user email</p>"
+          }
+        ],
+        "Request header": [
+          {
+            "group": "Request header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Pass it to headers</p>"
+          },
+          {
+            "group": "Request header",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>Pass it to headers</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Example usage, pass any field that needs update: ",
+          "content": "{\n  \"username\": \"thunderkebap\",\n  \"password\": \"nhhHUde^Fd7\",\n  \"email\": \"email@tobeupdated.com\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Success example",
+          "content": "HTTP/1.1 200 OK\n{\n   \"message\": \"Welcome back jonathan\",\n   \"user\": \"jonathan\",\n},\n\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxOSwidXNlcm5hbWUiOiJlcmFscCIsImlhdCI6MTU3NzQ4NTk0MSwiZXhwIjoxNTc4MDkwNzQxfQ.rHx8rKLqhZnzgBzDgPHXNH8z8Ger9xen95PPKEbsJ9I\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "https://chef-portfolio1-bw.herokuapp.com/api/auth/login"
+      }
+    ],
+    "error": {
+      "examples": [
+        {
+          "title": "List User exist",
+          "content": "HTTP/1.1 401 Internal Server Error\n{\n  \"message\": \"Wrong login credentials.\"\n}",
           "type": "json"
         },
         {
@@ -168,5 +348,167 @@ define({ "api": [
     },
     "filename": "src/api/server.js",
     "groupTitle": "Blog_Posts"
+  },
+  {
+    "type": "get",
+    "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/postsbyuserid",
+    "title": "Show chefs recipes only",
+    "version": "0.1.0",
+    "name": "Get",
+    "group": "Blogs_auth",
+    "permission": [
+      {
+        "name": "authenticate user passing token to header"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Request header": [
+          {
+            "group": "Request header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "Array",
+            "description": "<p>array of objects</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success example array",
+          "content": "HTTP/1.1 200 OK\n[\n{\n  \"id\": 17,\n  \"food_name\": \"Horseradish and goose salad\",\n  \"description\": \"A crisp salad featuring fresh horseradish and goose\",\n  \"image\": \"http://lorempixel.com/640/480/food\",\n  \"is_liked\": 0,\n  \"created_at\": \"2019-12-29 02:14:26\",\n  \"user_id\": 7\n},\n{\n  \"id\": 18,\n  \"food_name\": \"Kidney and blackberry pie\",\n  \"description\": \"A puff pasty case filled with kidney and fresh blackberry\",\n  \"image\": \"http://lorempixel.com/640/480/food\",\n  \"is_liked\": 0,\n  \"created_at\": \"2019-12-29 02:16:27\",\n  \"user_id\": 7\n}\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/poatsbyuserid"
+      }
+    ],
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 401 Unauthorized\n\n{\n  \"message\": \"Invalid Token, you will need to Log back in\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/auth/bloggers/blogger-router.js",
+    "groupTitle": "Blogs_auth"
+  },
+  {
+    "type": "post",
+    "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/posts",
+    "title": "Add new recipe",
+    "version": "0.1.0",
+    "name": "Post",
+    "group": "Blogs_auth",
+    "permission": [
+      {
+        "name": "authenticate a blog auth user login"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Request header": [
+          {
+            "group": "Request header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ],
+        "Request body": [
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "food_name",
+            "description": "<p>Recipe name</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Recipe description</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "image",
+            "description": "<p>Link to image</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage, required: ",
+        "content": "\n{\n  \"food_name\": \"Horseradish and goose salad\",\n  \"description\": \"A crisp salad featuring fresh horseradish and goose\",\n  \"image\": \"http://lorempixel.com/640/480/food\"\n}",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "message",
+            "description": "<p>&quot;Food idea added&quot;</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success example",
+          "content": "HTTP/1.1 200 OK\n{\n  \"message\": \"Food idea added\",\n  \"recipe\": [\n  {\n    \"id\": 18,\n    \"food_name\": \"Kidney and blackberry pie\",\n    \"description\": \"A puff pasty case filled with kidney and fresh blackberry\",\n    \"image\": \"http://lorempixel.com/640/480/food\",\n    \"is_liked\": 0,\n    \"created_at\": \"2019-12-29 02:16:27\",\n    \"user_id\": 7\n    }\n  ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/posts"
+      }
+    ],
+    "error": {
+      "examples": [
+        {
+          "title": "Unauthorized error",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n  \"message\": \"Invalid Token, you will need to Log back in\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/auth/bloggers/blogger-router.js",
+    "groupTitle": "Blogs_auth"
   }
 ] });

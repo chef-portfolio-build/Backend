@@ -1,7 +1,7 @@
 const db = require('../../database/dbConfig');
 
 module.exports = {
-  getUserPosts,
+  // getUserPosts,
   insertPost,
   updatePost,
   removePost,
@@ -10,7 +10,7 @@ module.exports = {
   findById
 }
 
-// delte later experimenting
+// delete later experimenting
 function find() {
   return db('posts');
 }
@@ -27,8 +27,12 @@ function getLatestPosts(id) {
     .where('user_id', id)
 }
 
-function insertPost(post) {
-  return db('posts').insert(post);
+function insertPost(post, user_id) {
+  return db('posts')
+    .insert({ ...post, user_id })
+    .then(id => {
+      return db('posts').where({ id: id[0] });
+    })
 }
 
 function updatePost(id, changes) {
