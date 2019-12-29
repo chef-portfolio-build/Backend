@@ -6,7 +6,7 @@ exports.up = function(knex) {
       tbl.string('food_name');
       tbl.string('description');
       tbl.string('image');
-      tbl.boolean('is_liked');
+      tbl.boolean('is_liked').defaultTo(false);
       tbl.timestamp('created_at').defaultTo(knex.fn.now());
       tbl.integer('user_id')
         .unsigned()
