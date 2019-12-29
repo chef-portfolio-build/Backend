@@ -3,7 +3,8 @@ const db = require('../database/dbConfig');
 module.exports = {
   find,
   findById,
-  getUserWithRecipe
+  getUserWithRecipe,
+  showUserInfoWithFood
 }
 
 function find() {
@@ -23,4 +24,13 @@ function getUserWithRecipe(user_id) {
     .select('users.id', 'food_name', 'description', 'image', 'created_at', 'posts.id')
     .where({ user_id: user_id })
     .orderBy('posts.id')
+}
+
+// shows user info with food id
+function showUserInfoWithFood(users_id) {
+  return db('posts')
+    .select('posts.*','users.username', 'users.email')
+    .from('posts')
+    .join('users', 'users.id', 'posts.user_id')
+    .where('users.id', users_id)
 }

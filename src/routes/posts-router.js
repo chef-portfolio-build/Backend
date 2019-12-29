@@ -13,9 +13,9 @@ router.get('/', (req, res) => {
     });
 });
 
-// GET display all recipes by user id
+// GET display all recipes by user id need to add user info too
 router.get('/user/:id', (req, res) => {
-  Posts.getUserWithRecipe(req.params.id)
+  Posts.showUserInfoWithFood(req.params.id)
     .then(recipe => {
       if (recipe) {
         res.status(200).json({recipes: recipe})

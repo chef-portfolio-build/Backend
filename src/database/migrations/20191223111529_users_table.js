@@ -10,6 +10,12 @@ exports.up = function(knex) {
         .notNullable();
       tbl.string('email', 128)
         .unique();
+        // website address
+        // bio about chef
+        // chef image
+        // linkedin link
+        // twitter link
+        // cuisine style
     })
     // work place, website link, first last name
 };

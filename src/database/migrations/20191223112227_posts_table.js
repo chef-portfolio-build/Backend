@@ -16,7 +16,8 @@ exports.up = function(knex) {
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
     })
-  
+  // meal type (breakfast, lunch, dinner, vegan, snack, desert)
+  // chefs other meals ideas
 };
 
 exports.down = function(knex) {
