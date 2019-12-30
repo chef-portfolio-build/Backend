@@ -13,7 +13,23 @@ router.get('/', (req, res) => {
     });
 });
 
-// GET display by name or id
+// GET display all recipes by user id need to add user info too
+router.get('/user/:id', (req, res) => {
+  Posts.showUserInfoWithFood(req.params.id)
+    .then(recipe => {
+      if (recipe) {
+        res.status(200).json({recipes: recipe})
+      } else {
+        res.status(400).json({ message: 'Cannot find post in database...'})
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({message: 'Failed to get post...'})
+    })
+});
+
+// GET display single recipe by recipe id
 router.get('/:id', (req, res) => {
   Posts.findById(req.params.id)
     .then(recipe => {

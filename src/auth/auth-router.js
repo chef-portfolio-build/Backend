@@ -1,7 +1,6 @@
 const router = require('express').Router();
 require('dotenv').config();
 const HashFactor = parseInt(process.env.HASH) || 8;
-// const secret = require('../config/secrets.js');
 const validateNewUser = require('./validNewUser');
 const validateLogin = require('./validLoginUser');
 const restricted = require('../auth/middleware/auth-middleware');

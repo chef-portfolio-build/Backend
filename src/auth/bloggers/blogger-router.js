@@ -63,6 +63,7 @@ router.get('/postsbyuserid/', jwt.checkToken(), (req, res) => {
     });
 });
 
+// don't know if we should use this
 // get by id single post
 router.get('/posts/:id', (req, res) => {
   const { id } = req.params;
