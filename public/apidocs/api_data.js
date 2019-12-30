@@ -73,7 +73,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/auth/auth-router.js",
+    "filename": "src/auth/auth-router-doc.js",
     "groupTitle": "Auth"
   },
   {
@@ -153,13 +153,13 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/auth/auth-router.js",
+    "filename": "src/auth/auth-router-doc.js",
     "groupTitle": "Auth"
   },
   {
     "type": "put",
     "url": "https://chef-portfolio1-bw.herokuapp.com/api/auth/:id",
-    "title": "Change user info",
+    "title": "Update user info",
     "version": "0.1.0",
     "name": "Write",
     "group": "Auth",
@@ -253,7 +253,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/auth/auth-router.js",
+    "filename": "src/auth/auth-router-doc.js",
     "groupTitle": "Auth"
   },
   {
@@ -402,6 +402,11 @@ define({ "api": [
       "examples": [
         {
           "title": "List error",
+          "content": "HTTP/1.1 404 Not Found\n\n{\n  \"message\": \"Hello Master Chef, you have no posts yet, please start posting about your delicious recipes\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "List error",
           "content": "HTTP/1.1 401 Unauthorized\n\n{\n  \"message\": \"Invalid Token, you will need to Log back in\"\n}",
           "type": "json"
         },
@@ -412,7 +417,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/auth/bloggers/blogger-router.js",
+    "filename": "src/auth/bloggers/bloggers-router-doc.js",
     "groupTitle": "Blogs_auth"
   },
   {
@@ -508,7 +513,108 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/auth/bloggers/blogger-router.js",
+    "filename": "src/auth/bloggers/bloggers-router-doc.js",
+    "groupTitle": "Blogs_auth"
+  },
+  {
+    "type": "put",
+    "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/posts/:id",
+    "title": "Edit a recipe",
+    "version": "0.1.0",
+    "name": "Put",
+    "group": "Blogs_auth",
+    "permission": [
+      {
+        "name": "authenticate user first to get token"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Request header": [
+          {
+            "group": "Request header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ],
+        "Request body": [
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "food_name",
+            "description": "<p>Recipe name</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Recipe description</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "image",
+            "description": "<p>Link to image</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage, required: ",
+        "content": "\n{\n  \"food_name\": \"Horseradish and goose salad\",\n  \"description\": \"A crisp salad featuring fresh horseradish and goose\",\n  \"image\": \"http://lorempixel.com/640/480/food\"\n}",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "message",
+            "description": "<p>&quot;Recipe updated&quot;</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success example",
+          "content": "HTTP/1.1 200 OK\n{\n  \"message\": \"food_name,description,image updated successfully. \",\n  \"changes\": {\n  \"food_name\": \"Mash patatos\",\n  \"description\": \"Boiled patatos with creamy cheese\",\n  \"image\": \"http://lorempixel.com/640/480/food\"\n}\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/posts/:id"
+      }
+    ],
+    "error": {
+      "examples": [
+        {
+          "title": "List Error",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"message\": \"Hello chef username, you have no posts yet, please start posting about your delicious recipes\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Unauthorized error",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n  \"message\": \"Invalid Token, you will need to Log back in\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/auth/bloggers/bloggers-router-doc.js",
     "groupTitle": "Blogs_auth"
   }
 ] });

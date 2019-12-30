@@ -35,11 +35,13 @@ function insertPost(post, user_id) {
     })
 }
 
+// update posts
 function updatePost(id, changes) {
   return db('posts')
     .where({ id })
-    .update(changes);
+    .update(changes, '*');
 }
+
 
 function removePost(id) {
   return db('posts')
