@@ -52,24 +52,34 @@ router.post('/login', validateLogin, (req, res) => {
 
 
 // Edit user information PUT
-router.put('/:id', restricted, (req, res) => {
+router.put('/:id', jwt.checkToken(), (req, res) => {
+  const userId = req.user.subject;
+  const userName = req.user.username;
   const { id } = req.params;
   const changes = req.body;
-  
-  if (changes.password) {
-    console.log(changes.password)
-    const hash = bcrypt.hashSync(changes.password, HashFactor);
-    changes.password = hash;
-  }
-  Users.editById(id, changes)
-    .then(user => {
-      console.log(changes)
-      res.status(200).json({ message: `${Object.keys(changes)} updated successfully` });
+
+  Users.findById(id)
+    .then(u => {
+      if (u.id === userId) {
+        if (changes.password) {
+          console.log(changes.password)
+          const hash = bcrypt.hashSync(changes.password, HashFactor);
+          changes.password = hash;
+        }
+      Users.editById(id, changes)
+        .then(user => {
+          console.log(changes)
+          res.status(200).json({ message: `${Object.keys(changes)} updated successfully` });
+        })
+        .catch(err => {
+          console.log(err);
+          res.status(404).json({ error: err});
+        });
+      } else {
+        res.status(404).json({message: `The server can not find requested resource. User id: ${id}`})
+      }
     })
-    .catch(err => {
-      console.log(err);
-      res.status(404).json({ error: err});
-    });
+    .catch(err => {console.log(err); res.status(500).json({error: err})})
 });
 
 // Only for admins to delete a user

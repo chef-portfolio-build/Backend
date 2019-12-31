@@ -29,6 +29,7 @@
     * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/auth/register
     * 
     * @apiErrorExample {json} List User exist
+    * HTTP/1.1 409 Conflict
     * {
     * "errors": [
     *   {
@@ -76,7 +77,7 @@
     * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/auth/login
     * 
     * @apiErrorExample {json} List User exist
-    * HTTP/1.1 401 Internal Server Error
+    * HTTP/1.1 401 Unauthorized
     *{
     *   "message": "Wrong login credentials."
     *}
@@ -104,7 +105,9 @@
     * {
     *   "username": "thunderkebap",
     *   "password": "nhhHUde^Fd7",
-    *   "email": "email@tobeupdated.com"
+    *   "email": "email@tobeupdated.com",
+    *   "phone": "19191234567",
+	  *   "cuisine_style": "Turkish"
     * }
     * 
     * @apiParam (Request header) {String} Authorization Pass it to headers
@@ -119,10 +122,16 @@
     *},
     * "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxOSwidXNlcm5hbWUiOiJlcmFscCIsImlhdCI6MTU3NzQ4NTk0MSwiZXhwIjoxNTc4MDkwNzQxfQ.rHx8rKLqhZnzgBzDgPHXNH8z8Ger9xen95PPKEbsJ9I"
     *}
-    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/auth/login
+    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/auth/:id
+    * 
+    * @apiErrorExample {json} List wrong user id
+    * HTTP/1.1 404 Not Found
+    * {
+    *   "message": "The server can not find requested resource. User id: 7"
+    * }
     * 
     * @apiErrorExample {json} List User exist
-    * HTTP/1.1 401 Internal Server Error
+    * HTTP/1.1 401 Unauthorized
     *{
     *   "message": "Wrong login credentials."
     *}

@@ -29,12 +29,13 @@ router.get('/user/:id', (req, res) => {
     })
 });
 
-// GET display single recipe by recipe id
+
+// GET display single recipe by recipe id and chef bio
 router.get('/:id', (req, res) => {
-  Posts.findById(req.params.id)
-    .then(recipe => {
-      if (recipe) {
-        res.status(200).json({recipes: recipe})
+  Posts.getUserWithRecipeAndBio(req.params.id)
+    .then(bio => {
+      if (bio) {
+        res.status(200).json({recipes: bio})
       } else {
         res.status(400).json({ message: 'Cannot find post in database...'})
       }
