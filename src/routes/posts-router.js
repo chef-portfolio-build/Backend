@@ -13,14 +13,20 @@ router.get('/', (req, res) => {
     });
 });
 
-// GET display all recipes by user id need to add user info too
+// GET display all recipes by user id 
 router.get('/user/:id', (req, res) => {
-  Posts.showUserInfoWithFood(req.params.id)
+  const { id } = req.params;
+  // Posts.findBy(id)
+  //   .then(ids => {
+  //     console.log(ids.id)
+  //   })
+  Posts.showUserInfoWithFood(id)
     .then(recipe => {
-      if (recipe) {
+      console.log(recipe)
+      if (recipe.length) {
         res.status(200).json({recipes: recipe})
       } else {
-        res.status(400).json({ message: 'Cannot find post in database...'})
+        res.status(400).json({ message: `Chef id: ${id}, has no posts`})
       }
     })
     .catch(err => {
@@ -29,12 +35,13 @@ router.get('/user/:id', (req, res) => {
     })
 });
 
-// GET display single recipe by recipe id
+
+// GET display single recipe by recipe id and chef bio
 router.get('/:id', (req, res) => {
-  Posts.findById(req.params.id)
-    .then(recipe => {
-      if (recipe) {
-        res.status(200).json({recipes: recipe})
+  Posts.getUserWithRecipeAndBio(req.params.id)
+    .then(bio => {
+      if (bio) {
+        res.status(200).json({recipes: bio})
       } else {
         res.status(400).json({ message: 'Cannot find post in database...'})
       }

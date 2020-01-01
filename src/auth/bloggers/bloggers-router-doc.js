@@ -158,3 +158,41 @@
     * @apiErrorExample {json} List error
     * HTTP/1.1 500 Internal Server Error
     **/
+
+    // *****************************************************
+    // **********************************************************
+    //Remove a recipe
+        /**
+    * @api {delete} https://chef-portfolio1-bw.herokuapp.com/api/private/posts/:id Delete a recipe
+    * @apiVersion 0.1.0
+    * @apiName Delete
+    * @apiGroup Blogs auth
+    * @apiPermission first authenticate user to get token
+    *
+    * @apiParam (Request header) {String} Authorization token
+    * 
+    * @apiSuccess
+    * message "Recipe deleted successfully"
+    * 
+    * @apiSuccessExample {json} Success example
+    * HTTP/1.1 200 OK
+    *{
+    *  message: 'Recipe deleted successfully.'
+    *}
+    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/private/posts/:id
+    * 
+    * @apiErrorExample {json} List Error
+    * HTTP/1.1 404 Not Found
+    *{
+    *   "message": "No recipe with that id: 14"
+    *}
+    * 
+    * @apiErrorExample {json} Unauthorized error
+    * HTTP/1.1 401 Unauthorized
+    * {
+    *   "message": "Invalid Token, you will need to Log back in"
+    * }
+    * 
+    * @apiErrorExample {json} List error
+    * HTTP/1.1 500 Internal Server Error
+    **/

@@ -224,7 +224,7 @@
       "examples": [
         {
           "title": "Example usage, pass any field that needs update: ",
-          "content": "{\n  \"username\": \"thunderkebap\",\n  \"password\": \"nhhHUde^Fd7\",\n  \"email\": \"email@tobeupdated.com\"\n}",
+          "content": "{\n  \"username\": \"thunderkebap\",\n  \"password\": \"nhhHUde^Fd7\",\n  \"email\": \"email@tobeupdated.com\",\n  \"phone\": \"19191234567\",\n  \"cuisine_style\": \"Turkish\"\n}",
           "type": "json"
         },
         {
@@ -236,11 +236,16 @@
     },
     "sampleRequest": [
       {
-        "url": "https://chef-portfolio1-bw.herokuapp.com/api/auth/login"
+        "url": "https://chef-portfolio1-bw.herokuapp.com/api/auth/:id"
       }
     ],
     "error": {
       "examples": [
+        {
+          "title": "List wrong user id",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"message\": \"The server can not find requested resource. User id: 7\"\n}",
+          "type": "json"
+        },
         {
           "title": "List User exist",
           "content": "HTTP/1.1 401 Internal Server Error\n{\n  \"message\": \"Wrong login credentials.\"\n}",
@@ -259,9 +264,9 @@
   {
     "type": "get",
     "url": "https://chef-portfolio1-bw.herokuapp.com/api",
-    "title": "Retrieve all blog posts",
-    "version": "1.0.0",
-    "name": "GetAll",
+    "title": "List all blog posts",
+    "version": "0.1.0",
+    "name": "Blogs",
     "group": "Blog_Posts",
     "permission": [
       {
@@ -346,8 +351,172 @@
         }
       ]
     },
-    "filename": "src/api/server.js",
+    "filename": "src/routes/posts-router-doc.js",
     "groupTitle": "Blog_Posts"
+  },
+  {
+    "type": "get",
+    "url": "https://chef-portfolio1-bw.herokuapp.com/api/:id",
+    "title": "List single blog post",
+    "version": "0.1.0",
+    "name": "Blogs",
+    "group": "Blog_Posts",
+    "permission": [
+      {
+        "name": "no authentication required"
+      }
+    ],
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "$http.get(url)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The post id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Food name</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Short description of food idea</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "image",
+            "description": "<p>Add image url</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "is_like",
+            "description": "<p>Like or not</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "created_at",
+            "description": "<p>Date string</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Creators id</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 200 OK\n [{\n    \"id\": 1,\n    \"food_name\": \"Banana and coriander salad\",\n    \"description\": \"Fresh banana and dried coriander served on a bed of lettuce\",\n    \"image\": \"http://lorempixel.com/640/480/food\",\n    \"is_liked\": 0,\n    \"created_at\": \"\",\n    \"user_id\": 1\n}]",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/routes/posts-router-doc.js",
+    "groupTitle": "Blog_Posts"
+  },
+  {
+    "type": "delete",
+    "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/posts/:id",
+    "title": "Delete a recipe",
+    "version": "0.1.0",
+    "name": "Delete",
+    "group": "Blogs_auth",
+    "permission": [
+      {
+        "name": "first authenticate user to get token"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Request header": [
+          {
+            "group": "Request header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "message",
+            "description": "<p>&quot;Recipe deleted successfully&quot;</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success example",
+          "content": "HTTP/1.1 200 OK\n{\n message: 'Recipe deleted successfully.'\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/posts/:id"
+      }
+    ],
+    "error": {
+      "examples": [
+        {
+          "title": "List Error",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"message\": \"No recipe with that id: 14\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Unauthorized error",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n  \"message\": \"Invalid Token, you will need to Log back in\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/auth/bloggers/bloggers-router-doc.js",
+    "groupTitle": "Blogs_auth"
   },
   {
     "type": "get",

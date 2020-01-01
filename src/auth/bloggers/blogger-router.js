@@ -19,7 +19,7 @@ router.get('/postsbyuserid/', jwt.checkToken(), (req, res) => {
     })
     .catch(err => {
       console.log(err);
-      res.status(500).json({ message: 'Posts not found...wtf?' });
+      res.status(500).json({ message: 'Posts not found...' });
     });
 });
 
@@ -52,17 +52,17 @@ router.put('/posts/:id', jwt.checkToken(), (req, res) => {
   const userName = req.user.username;
   const { id } = req.params;
   const changes = req.body;
-  console.log(id, userId)
+  // console.log(id, userId)
   Post.findById(id)
     .then(ids => {
-      console.log(ids.user_id)
+      // console.log(ids.user_id)
       if (ids.user_id === userId) {
         Post.updatePost(id, changes)
         .then(recipe => {
-          console.log(changes)
+          // console.log(recipe)
           res.status(200).json({ message: `${Object.keys(changes)} updated successfully. `, changes});
         })
-        .catch(err => {console.log(err); res.status(500).json({error: 'You must enter some info'})})
+        .catch(err => {console.log(err); res.status(204).json({error: 'You must enter some info'})})
       } else {
         res.status(404).json({ message: `Hello chef ${userName}, you have no posts yet, please start posting about your delicious recipes` });
       }
@@ -72,10 +72,27 @@ router.put('/posts/:id', jwt.checkToken(), (req, res) => {
 
 
 // remove chef recipe by ID
-router.delete('/posts/:id', jwt.checkToken(), (req, res) => {
-  const userId = req.user.subject;
-
-  Post.removePost()
+router.delete('/posts/:id', jwt.checkToken(), (req, res, next) => {
+  const {subject, username} = req.user;
+  const { id } = req.params;
+  
+  Post.findById(id)
+    .then(ids => {
+      if (!ids) {
+        res.status(404).json({ message: `No recipe with that id: ${id}`})
+      } else {
+        if (ids.user_id === subject) {
+          Post.removePost(id)
+            .then(p => {
+              res.status(202).json({ message: 'Recipe deleted successfully.'})
+            })
+            .catch(err => {console.log(err); res.status(204).json({error: err})})
+        } else {
+          res.status(404).json({ message: `Hello chef ${userName}, that post does not exist.` });
+        }
+      }
+    })
+    .catch(err => {console.log(err); res.status(500).json({error: err})})
 });
 
 module.exports = router;
