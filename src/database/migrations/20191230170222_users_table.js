@@ -3,6 +3,7 @@
 exports.up = function(knex) {
   return knex.schema
     .createTable('users', tbl =>{
+      // tbl.clearCounters()
       tbl.increments();
       tbl.string('password', 128)
         .notNullable();
@@ -16,6 +17,11 @@ exports.up = function(knex) {
       tbl.string('last_name', 128)
       tbl.string('cuisine_style', 128)
       tbl.string('address', 128)
+      // rerun migreation
+      tbl.string('city', 50);
+      tbl.string('state', 50);
+      tbl.string('country', 50);
+
       tbl.string('zip', 10)
       tbl.string('website', 256)
       tbl.string('bio', 1024)

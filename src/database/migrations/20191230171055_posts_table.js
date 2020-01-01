@@ -3,6 +3,7 @@ exports.up = function(knex) {
   return knex.schema
     // recipes
     .createTable('posts', tbl => {
+      // tbl.clearCounters();
       tbl.increments();
       tbl.string('food_name');
       tbl.string('description');

@@ -18,6 +18,11 @@ const createFakeUser = () => ({
   last_name: faker.name.lastName(),
   cuisine_style: cuisines.randomCuisine(),
   address: faker.address.streetAddress(),
+
+  city: faker.address.city(),
+  state: faker.address.stateAbbr(),
+  country: faker.address.country(),
+
   zip: faker.address.zipCode(),
   website: faker.internet.domainName(),
   bio: faker.lorem.paragraph(),
@@ -29,7 +34,7 @@ const createFakeUser = () => ({
 exports.seed = function(knex, Promise) {
   // Users
   const fakeUsers = [];
-  const desiredFakeUsers = 50;
+  const desiredFakeUsers = 10;
   for (let i = 0; i < desiredFakeUsers; i++) {
     fakeUsers.push(createFakeUser());
   }

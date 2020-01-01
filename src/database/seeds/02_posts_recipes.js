@@ -13,7 +13,7 @@ exports.seed = function(knex) {
           description: 'Fresh lobster and irish whiskey served on a bed of lettuce',
           image: 'https://media-cdn.tripadvisor.com/media/photo-s/0f/b8/51/fe/irish-whiskey-lobster.jpg',
           meal_type: 'Dinner',
-          user_id: 11,
+          user_id: 10,
           created_at: '2019-12-29 01:32:21',
         },
         {
@@ -21,7 +21,7 @@ exports.seed = function(knex) {
           description: 'A crisp salad featuring butter bean and peanut',
           image: 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/user-collections/my-colelction-image/2015/12/recipe-image-legacy-id--279493_12.jpg?itok=aTPIm-5c',
           meal_type: 'Salad',
-          user_id: 10,
+          user_id: 9,
           created_at: '2019-12-29 01:32:21',
         },
         {
@@ -29,7 +29,7 @@ exports.seed = function(knex) {
           description: 'Crunchy biscuits made with pecan and crunchy date',
           image: 'https://img.taste.com.au/wicKYfuG/w643-h428-cfill-q90/taste/2016/11/date-pecan-and-ginger-cookies-21578-1.jpeg',
           meal_type: 'Dessert',
-          user_id: 20,
+          user_id: 2,
           created_at: '2019-12-29 01:32:21',
         },
         {
@@ -37,7 +37,7 @@ exports.seed = function(knex) {
           description: 'Venison and bean stewed',
           image: 'https://data.thefeedfeed.com/recommended/post_4053077.jpeg',
           meal_type: 'Dinner',
-          user_id: 8,
+          user_id: 2,
           created_at: '2019-12-29 01:32:21',
         },
         {
@@ -53,7 +53,7 @@ exports.seed = function(knex) {
           description: 'Sultana and gruyere served on a bed of lettuce',
           image: 'https://images.unsplash.com/photo-1543340713-0f7f0abf9e49?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=600',
           meal_type: 'Salad',
-          user_id: 2,
+          user_id: 4,
           created_at: '2019-12-29 01:32:21',
         },
         {
@@ -77,7 +77,7 @@ exports.seed = function(knex) {
           description: 'A shortcrust pasty case filled with bramley apple and fresh blackberry',
           image: 'hhttps://images-gmi-pmc.edge-generalmills.com/29830815-477f-4970-a163-dd411fc9631b.jpg',
           meal_type: 'dessert',
-          user_id: 1,
+          user_id: 8,
           created_at: '2019-12-29 01:32:21',
         },
         {
