@@ -31,7 +31,8 @@ function getUserWithRecipeAndBio(post_id) {
 // shows user info with food id
 function showUserInfoWithFood(users_id) {
   return db('posts')
-    .select('posts.*','users.username', 'users.email')
+    // .select('posts.*','users.first_name', 'users.last_name')
+    .select('posts.*')
     .from('posts')
     .join('users', 'users.id', 'posts.user_id')
     .where('users.id', users_id)
@@ -41,6 +42,13 @@ function showUserInfoWithFood(users_id) {
 function filterBy(filter) {
   return db('posts')
     .select('posts.*', 'users.username')
+}
+
+function getRecipeById(post_id) {
+  return db('posts')
+    .join('recipe_ingredients as ri', 'ri.recipe_id', 'posts.id')
+    .select('posts.*', 'users.username')
+    .join('ingredients as i', 'i.id', )
 }
 
 // function findBy(id) {

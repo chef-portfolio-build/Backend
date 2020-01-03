@@ -25,15 +25,15 @@ router.get('/postsbyuserid/', jwt.checkToken(), (req, res) => {
 
 // don't know if we should use this
 // get by id single post
-router.get('/posts/:id', (req, res) => {
-  const { id } = req.params;
-  Post.findById(id)
-    .then(p => {res.status(200).json({message: 'Success...', p})})
-    .catch(err => {console.log(err); res.status(500).json({ error: err})});
-});
+// router.get('/posts/:id', (req, res) => {
+//   const { id } = req.params;
+//   Post.findById(id)
+//     .then(p => {res.status(200).json({message: 'Success...', p})})
+//     .catch(err => {console.log(err); res.status(500).json({ error: err})});
+// });
 
 
-// POST add more recipes
+// POST add more recipes to blog, 
 router.post('/posts', jwt.checkToken(), (req, res) => {
   const userId = req.user.subject;
   const postData = req.body;
@@ -52,7 +52,7 @@ router.put('/posts/:id', jwt.checkToken(), (req, res) => {
   const userName = req.user.username;
   const { id } = req.params;
   const changes = req.body;
-  // console.log(id, userId)
+  console.log('before findby',id, userId)
   Post.findById(id)
     .then(ids => {
       // console.log(ids.user_id)

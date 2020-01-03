@@ -20,12 +20,21 @@ function getUserPosts(user_id) {
     .leftJoin('users', 'posts.user_id', '=', 'users.id')
     .where({ user_id });
 }
-// experimenting
+
 // select * from posts where user_id = 1
 function getLatestPosts(id) {
   return db('posts')
     .where('user_id', id)
 }
+
+// function insertPostWithInstructions(post, user_id) {
+//   return db('posts')
+//     .join('')
+//     .insert({ ...post, user_id })
+//     .then(id => {
+//       return db('posts').where({ id: id[0] });
+//     })
+// }
 
 function insertPost(post, user_id) {
   return db('posts')
@@ -33,6 +42,12 @@ function insertPost(post, user_id) {
     .then(id => {
       return db('posts').where({ id: id[0] });
     })
+}
+
+function insertIngredient(post, post_id) {
+  return db('recipe_ingredients')
+    .insert({ ...post, post_id})
+    
 }
 
 // update posts
