@@ -1,5 +1,5 @@
 /**
-    * @api {get} https://chef-portfolio1-bw.herokuapp.com/api/private/postsbyuserid Show chefs recipes only
+    * @api {get} https://chef-portfolio1-bw.herokuapp.com/api/private/recipesbychefid Show chefs recipes only
     * @apiVersion 0.1.0
     * @apiName Get
     * @apiGroup Blogs auth
@@ -32,7 +32,7 @@
     *   "user_id": 7
     * }
     *]
-    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/private/poatsbyuserid
+    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/private/recipesbychefid
     * 
     * @apiErrorExample {json} List error
     * HTTP/1.1 404 Not Found
@@ -56,7 +56,7 @@
 
     // POST add new recipes
 /**
-    * @api {post} https://chef-portfolio1-bw.herokuapp.com/api/private/posts Add new recipe
+    * @api {post} https://chef-portfolio1-bw.herokuapp.com/api/private/recipe Add new recipe
     * @apiVersion 0.1.0
     * @apiName Post
     * @apiGroup Blogs auth
@@ -93,7 +93,7 @@
     *     }
     *   ]
     *}
-    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/private/posts
+    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/private/recipe
     * 
     * @apiErrorExample {json} Unauthorized error
     * HTTP/1.1 401 Unauthorized
@@ -110,7 +110,7 @@
 
     // Edit chefs recipes 
     /**
-    * @api {put} https://chef-portfolio1-bw.herokuapp.com/api/private/posts/:id Edit a recipe
+    * @api {put} https://chef-portfolio1-bw.herokuapp.com/api/private/recipe/:id Edit a recipe
     * @apiVersion 0.1.0
     * @apiName Put
     * @apiGroup Blogs auth
@@ -141,12 +141,18 @@
     *   "image": "http://lorempixel.com/640/480/food"
     * }
     *}
-    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/private/posts/:id
+    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/private/recipe/:id
     * 
     * @apiErrorExample {json} List Error
     * HTTP/1.1 404 Not Found
     * {
-    *   "message": "Hello chef username, you have no posts yet, please start posting about your delicious recipes"
+    *   "message": "No recipe with given id: 12200"
+    * }
+    * 
+    * @apiErrorExample {json} List Error
+    * HTTP/1.1 404 Not Found
+    * {
+    *   "message": "Hello chef username, not your post or you have no posts yet, please start posting about your delicious recipes"
     * }
     * 
     * @apiErrorExample {json} Unauthorized error
@@ -163,7 +169,7 @@
     // **********************************************************
     //Remove a recipe
         /**
-    * @api {delete} https://chef-portfolio1-bw.herokuapp.com/api/private/posts/:id Delete a recipe
+    * @api {delete} https://chef-portfolio1-bw.herokuapp.com/api/private/recipe/:id Delete a recipe
     * @apiVersion 0.1.0
     * @apiName Delete
     * @apiGroup Blogs auth
@@ -179,7 +185,7 @@
     *{
     *  message: 'Recipe deleted successfully.'
     *}
-    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/private/posts/:id
+    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/private/recipe/:id
     * 
     * @apiErrorExample {json} List Error
     * HTTP/1.1 404 Not Found

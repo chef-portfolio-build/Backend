@@ -38,8 +38,11 @@ router.get('/user/:id', (req, res) => {
 
 // GET display single recipe by recipe id and chef bio
 router.get('/:id', (req, res) => {
-  Posts.getUserWithRecipeAndBio(req.params.id)
+  const id = req.params.id;
+  // console.log(typeof Number(id))
+  Posts.recipeWithIngredients(id)
     .then(bio => {
+      // console.log(bio)
       if (bio) {
         res.status(200).json({recipes: bio})
       } else {

@@ -39,10 +39,10 @@ exports.seed = function(knex, Promise) {
     fakeUsers.push(createFakeUser());
   }
   // Deletes ALL existing entries
-  return knex('users').del()
+  return knex('chef').del()
     .then(function () {
       // Inserts seed entries
-      return knex('users')
+      return knex('chef')
         .insert(fakeUsers);
     });
 };

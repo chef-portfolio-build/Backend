@@ -4,10 +4,10 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('posts').del()
+  return knex('recipe').del()
     .then(function () {
       // Inserts seed entries
-      return knex('posts').insert([
+      return knex('recipe').insert([
         {
           food_name: 'Lobster and irish whiskey salad',
           description: 'Fresh lobster and irish whiskey served on a bed of lettuce',
@@ -15,6 +15,7 @@ exports.seed = function(knex) {
           meal_type: 'Dinner',
           user_id: 10,
           created_at: '2019-12-29 01:32:21',
+          instructions: 'Consequuntur eum eos repudiandae sed. Quaerat libero assumenda. Aspernatur distinctio suscipit voluptas rerum deleniti ratione et. Ut quae quia incidunt quos qui impedit facere. Praesentium voluptatum aut magnam rerum velit sit sunt. Cumque ratione repellendus quia quia voluptate nulla a.'
         },
         {
           food_name: 'Butter bean and peanut salad',
@@ -23,6 +24,7 @@ exports.seed = function(knex) {
           meal_type: 'Salad',
           user_id: 9,
           created_at: '2019-12-29 01:32:21',
+          instructions: 'Consequuntur eum eos repudiandae sed. Quaerat libero assumenda. Aspernatur distinctio suscipit voluptas rerum deleniti ratione et. Ut quae quia incidunt quos qui impedit facere. Praesentium voluptatum aut magnam rerum velit sit sunt. Cumque ratione repellendus quia quia voluptate nulla a.'
         },
         {
           food_name: 'Pecan and date biscuits',
@@ -31,6 +33,7 @@ exports.seed = function(knex) {
           meal_type: 'Dessert',
           user_id: 2,
           created_at: '2019-12-29 01:32:21',
+          instructions: 'Consequuntur eum eos repudiandae sed. Quaerat libero assumenda. Aspernatur distinctio suscipit voluptas rerum deleniti ratione et. Ut quae quia incidunt quos qui impedit facere. Praesentium voluptatum aut magnam rerum velit sit sunt. Cumque ratione repellendus quia quia voluptate nulla a.'
         },
         {
           food_name: 'Venison and bean casserole',
@@ -39,6 +42,7 @@ exports.seed = function(knex) {
           meal_type: 'Dinner',
           user_id: 2,
           created_at: '2019-12-29 01:32:21',
+          instructions: 'Consequuntur eum eos repudiandae sed. Quaerat libero assumenda. Aspernatur distinctio suscipit voluptas rerum deleniti ratione et. Ut quae quia incidunt quos qui impedit facere. Praesentium voluptatum aut magnam rerum velit sit sunt. Cumque ratione repellendus quia quia voluptate nulla a.'
         },
         {
           food_name: 'Banana and date cake',
@@ -47,6 +51,7 @@ exports.seed = function(knex) {
           meal_type: 'Dessert',
           user_id: 3,
           created_at: '2019-12-29 01:32:21',
+          instructions: 'Consequuntur eum eos repudiandae sed. Quaerat libero assumenda. Aspernatur distinctio suscipit voluptas rerum deleniti ratione et. Ut quae quia incidunt quos qui impedit facere. Praesentium voluptatum aut magnam rerum velit sit sunt. Cumque ratione repellendus quia quia voluptate nulla a.'
         },
         {
           food_name: 'Sultana and gruyere salad',
@@ -55,6 +60,7 @@ exports.seed = function(knex) {
           meal_type: 'Salad',
           user_id: 4,
           created_at: '2019-12-29 01:32:21',
+          instructions: 'Consequuntur eum eos repudiandae sed. Quaerat libero assumenda. Aspernatur distinctio suscipit voluptas rerum deleniti ratione et. Ut quae quia incidunt quos qui impedit facere. Praesentium voluptatum aut magnam rerum velit sit sunt. Cumque ratione repellendus quia quia voluptate nulla a.'
         },
         {
           food_name: 'Pigeon and stilton wontons',
@@ -63,6 +69,7 @@ exports.seed = function(knex) {
           meal_type: 'Dinner',
           user_id: 2,
           created_at: '2019-12-29 01:32:21',
+          instructions: 'Consequuntur eum eos repudiandae sed. Quaerat libero assumenda. Aspernatur distinctio suscipit voluptas rerum deleniti ratione et. Ut quae quia incidunt quos qui impedit facere. Praesentium voluptatum aut magnam rerum velit sit sunt. Cumque ratione repellendus quia quia voluptate nulla a.'
         },
         {
           food_name: 'Lemon and almond cupcakes',
@@ -71,6 +78,7 @@ exports.seed = function(knex) {
           meal_type: 'dessert',
           user_id: 1,
           created_at: '2019-12-29 01:32:21',
+          instructions: 'Consequuntur eum eos repudiandae sed. Quaerat libero assumenda. Aspernatur distinctio suscipit voluptas rerum deleniti ratione et. Ut quae quia incidunt quos qui impedit facere. Praesentium voluptatum aut magnam rerum velit sit sunt. Cumque ratione repellendus quia quia voluptate nulla a.'
         },
         {
           food_name: 'Apple and blackberry pie',
@@ -79,6 +87,7 @@ exports.seed = function(knex) {
           meal_type: 'dessert',
           user_id: 8,
           created_at: '2019-12-29 01:32:21',
+          instructions: 'Consequuntur eum eos repudiandae sed. Quaerat libero assumenda. Aspernatur distinctio suscipit voluptas rerum deleniti ratione et. Ut quae quia incidunt quos qui impedit facere. Praesentium voluptatum aut magnam rerum velit sit sunt. Cumque ratione repellendus quia quia voluptate nulla a.'
         },
         {
           food_name: 'Buffalo and aubergine kebab',
@@ -87,6 +96,7 @@ exports.seed = function(knex) {
           meal_type: 'Dinner',
           user_id: 1,
           created_at: '2019-12-29 01:32:21',
+          instructions: 'Consequuntur eum eos repudiandae sed. Quaerat libero assumenda. Aspernatur distinctio suscipit voluptas rerum deleniti ratione et. Ut quae quia incidunt quos qui impedit facere. Praesentium voluptatum aut magnam rerum velit sit sunt. Cumque ratione repellendus quia quia voluptate nulla a.'
         },
       ]);
     });

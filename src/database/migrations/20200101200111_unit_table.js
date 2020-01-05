@@ -1,7 +1,7 @@
 
 exports.up = function(knex) {
   return knex.schema
-    .createTable('unit_table', tbl => {
+    .createTable('unit', tbl => {
       tbl.increments()
       tbl.string('name', 50)
     })
@@ -9,5 +9,5 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
   return knex.schema
-    .dropTableIfExist('unit_table');
+    .dropTableIfExists('unit');
 };
