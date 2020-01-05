@@ -262,428 +262,6 @@ define({ "api": [
     "groupTitle": "Auth"
   },
   {
-    "type": "get",
-    "url": "https://chef-portfolio1-bw.herokuapp.com/api/:id",
-    "title": "List a recipe/blog by 🆔",
-    "version": "0.1.0",
-    "name": "Blog",
-    "group": "Blog_posts",
-    "permission": [
-      {
-        "name": "no authentication required"
-      }
-    ],
-    "examples": [
-      {
-        "title": "Example usage:",
-        "content": "$http.get(url)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
-        "type": "js"
-      }
-    ],
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Integer",
-            "optional": false,
-            "field": "id",
-            "description": "<p>The post id</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "name",
-            "description": "<p>Food name</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "description",
-            "description": "<p>Short description of food idea</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "image",
-            "description": "<p>Add image url</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Boolean",
-            "optional": false,
-            "field": "is_like",
-            "description": "<p>Like or not</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "created_at",
-            "description": "<p>Date string</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Integer",
-            "optional": false,
-            "field": "user_id",
-            "description": "<p>Creators id</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "first_name",
-            "description": "<p>Chefs first</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "last_name",
-            "description": "<p>Chefs last</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "website",
-            "description": "<p>Chefs homepage</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "email",
-            "description": "<p>Chefs email</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "phone",
-            "description": "<p>Chefs phone #</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "bio",
-            "description": "<p>Chefs biography</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "cuisine_style",
-            "description": "<p>Chefs style</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "linkedin",
-            "description": "<p>Chefs linkedin</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "twitter",
-            "description": "<p>Chefs twitter</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "address",
-            "description": "<p>Chefs address</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "zip",
-            "description": "<p>Chefs zip code</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "state",
-            "description": "<p>Chefs state</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "city",
-            "description": "<p>Chefs city</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "country",
-            "description": "<p>Chefs country</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success response:",
-          "content": "    HTTPS 200 OK\n{\n\"recipes\": [\n{\n  \"id\": 1,\n  \"food_name\": \"Lobster and irish whiskey salad\",\n  \"description\": \"Fresh lobster and irish whiskey served on a bed of lettuce\",\n  \"image\": \"https://s3.amazonaws.com/uifaces/faces/twitter/raphaelnikson/128.jpg\",\n  \"meal_type\": \"Dinner\",\n  \"is_liked\": false,\n  \"liked\": 0,\n  \"created_at\": \"2019-12-29 01:32:21\",\n  \"last_updated_at\": \"2019-12-31 23:08:00\",\n  \"user_id\": 10,\n  \"first_name\": \"Telly\",\n  \"last_name\": \"Metz\",\n  \"website\": \"rafael.info\",\n  \"email\": \"Friedrich_Purdy@hotmail.com\",\n  \"phone\": \"481.565.7527 x59491\",\n  \"bio\": \"Adipisci ullam voluptatum et ut molestiae facilis totam impedit quibusdam. Neque veritatis cumque quos animi officiis corporis accusantium. Aut quis ad facere inventore omnis vitae reprehenderit. Architecto quaerat minima atque voluptas porro. Ea excepturi nulla repudiandae dolorum.\",\n  \"cuisine_style\": \"Caribbean cuisine\",\n  \"linkedin\": \"https://cicero.name\",\n  \"twitter\": \"Timmothy_Hansen\",\n  \"address\": \"84959 Jennie Ways\",\n  \"zip\": \"43886\",\n  \"state\": \"MA\",\n  \"city\": \"West Groverfort\",\n  \"country\": \"Switzerland\"\n  }\n  ]\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "examples": [
-        {
-          "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error",
-          "type": "json"
-        }
-      ]
-    },
-    "filename": "src/routes/posts-router-doc.js",
-    "groupTitle": "Blog_posts"
-  },
-  {
-    "type": "get",
-    "url": "https://chef-portfolio1-bw.herokuapp.com/api",
-    "title": "List all blog posts",
-    "version": "0.1.0",
-    "name": "Blogs",
-    "group": "Blog_posts",
-    "permission": [
-      {
-        "name": "no authentication required"
-      }
-    ],
-    "examples": [
-      {
-        "title": "Example usage:",
-        "content": "$http.get(url)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
-        "type": "js"
-      }
-    ],
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Integer",
-            "optional": false,
-            "field": "id",
-            "description": "<p>The post id</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "food_name",
-            "description": "<p>Recipe name</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "description",
-            "description": "<p>Short description of food idea</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "image",
-            "description": "<p>Add image url</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "meal_type",
-            "description": "<p>Type of recipe</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Boolean",
-            "optional": false,
-            "field": "is_liked",
-            "description": "<p>Like or not</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Integer",
-            "optional": false,
-            "field": "liked",
-            "description": "<p>counter</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "created_at",
-            "description": "<p>Date of creation</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "last_updated_at",
-            "description": "<p>Date of last update</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Integer",
-            "optional": false,
-            "field": "user_id",
-            "description": "<p>Chef's id</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success response:",
-          "content": "    HTTPS 200 OK\n{\n \"posts\": [\n{\n  \"id\": 1,\n  \"food_name\": \"Banana and coriander salad\",\n  \"description\": \"Fresh banana and dried coriander served on a bed of lettuce\",\n  \"image\": \"http://lorempixel.com/640/480/food\",\n  \"meal_type\": \"Dinner\",\n  \"is_liked\": 0,\n  \"liked\": 0,\n  \"created_at\": \"2019-12-29 01:32:21\",\n  \"last_updated_at\": \"2019-12-31 23:08:00\",\n  \"user_id\": 10\n}]\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "examples": [
-        {
-          "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error",
-          "type": "json"
-        }
-      ]
-    },
-    "filename": "src/routes/posts-router-doc.js",
-    "groupTitle": "Blog_posts"
-  },
-  {
-    "type": "get",
-    "url": "https://chef-portfolio1-bw.herokuapp.com/api/user/:id",
-    "title": "List a recipes by chef 🆔",
-    "version": "0.1.0",
-    "name": "Recipes",
-    "group": "Blog_posts",
-    "permission": [
-      {
-        "name": "no authentication required"
-      }
-    ],
-    "examples": [
-      {
-        "title": "Example usage:",
-        "content": "$http.get(url)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
-        "type": "js"
-      }
-    ],
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Array",
-            "optional": false,
-            "field": "recipes",
-            "description": "<p>Array of recipes by user</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Integer",
-            "optional": false,
-            "field": "id",
-            "description": "<p>The post id</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "food_name",
-            "description": "<p>Name of the recipe</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "image",
-            "description": "<p>Picture of food</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "meal_type",
-            "description": "<p>Type of meal: (dessert, dinner, etc)</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Integer",
-            "optional": false,
-            "field": "liked",
-            "description": "<p>Liked counter</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "created_at",
-            "description": "<p>Creation date</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "last_updated_at",
-            "description": "<p>Last updated</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Integer",
-            "optional": false,
-            "field": "user_id",
-            "description": "<p>Chefs 🆔</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success response:",
-          "content": "    HTTPS 200 OK\n\n{\n  \"recipes\": [\n  {\n    \"id\": 8,\n    \"food_name\": \"Lemon and almond cupcakes\",\n    \"description\": \"Venison and bean stewed\",\n    \"image\": \"https://data.thefeedfeed.com/recommended/post_4053077.jpeg\",\n    \"meal_type\": \"dessert\",\n    \"is_liked\": 0,\n    \"liked\": 0,\n    \"created_at\": \"2019-12-29 01:32:21\",\n    \"last_updated_at\": \"2019-12-31 23:08:00\",\n    \"user_id\": 1\n    },\n  ]\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "examples": [
-        {
-          "title": "List error",
-          "content": "HTTP/1.1 400 Bad Request\n\n{\n  \"message\": \"Chef id: 30, has no posts\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "List error",
-          "content": "HTTP/1.1 500 Internal Server Error",
-          "type": "json"
-        }
-      ]
-    },
-    "sampleRequest": [
-      {
-        "url": "https://chef-portfolio1-bw.herokuapp.com/api/user/:id"
-      }
-    ],
-    "filename": "src/routes/posts-router-doc.js",
-    "groupTitle": "Blog_posts"
-  },
-  {
     "type": "delete",
     "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/recipe/:id",
     "title": "Delete a recipe",
@@ -1026,5 +604,509 @@ define({ "api": [
     },
     "filename": "src/auth/bloggers/bloggers-router-doc.js",
     "groupTitle": "Blogs_auth"
+  },
+  {
+    "type": "get",
+    "url": "https://chef-portfolio1-bw.herokuapp.com/api/:id/ingredients",
+    "title": "List of ingredients by recipe 🆔",
+    "version": "0.1.0",
+    "name": "Ingredients",
+    "group": "Recipe_posts",
+    "permission": [
+      {
+        "name": "no authentication required"
+      }
+    ],
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "$http.get(url)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "recipes",
+            "description": "<p>Array of ingredients</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ingredient 🆔</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "food_name",
+            "description": "<p>Name of the recipe</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "ingredient_name",
+            "description": "<p>Name of the ingredient</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": "    HTTPS 200 OK\n{\n  \"ingredients\": [\n{\n    \"id\": 9,\n    \"food_name\": \"Lobster and irish whiskey salad\",\n    \"ingredient_name\": \"garlic\"\n},\n{\n    \"id\": 12,\n    \"food_name\": \"Lobster and irish whiskey salad\",\n    \"ingredient_name\": \"black pepper\"\n},\n]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 400 Bad Request\n\n{\n  \"message\": \"Cannot find ingredients for that recipe in the database\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "https://chef-portfolio1-bw.herokuapp.com/api/:id/ingredients"
+      }
+    ],
+    "filename": "src/routes/posts-router-doc.js",
+    "groupTitle": "Recipe_posts"
+  },
+  {
+    "type": "get",
+    "url": "https://chef-portfolio1-bw.herokuapp.com/api/:id",
+    "title": "List a recipe/blog by 🆔",
+    "version": "0.1.0",
+    "name": "Recipe",
+    "group": "Recipe_posts",
+    "permission": [
+      {
+        "name": "no authentication required"
+      }
+    ],
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "$http.get(url)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The post id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Food name</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Short description of food idea</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "image",
+            "description": "<p>Add image url</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "is_like",
+            "description": "<p>Like or not</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "created_at",
+            "description": "<p>Date string</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Creators id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "first_name",
+            "description": "<p>Chefs first</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "last_name",
+            "description": "<p>Chefs last</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "website",
+            "description": "<p>Chefs homepage</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Chefs email</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "phone",
+            "description": "<p>Chefs phone #</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "bio",
+            "description": "<p>Chefs biography</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "cuisine_style",
+            "description": "<p>Chefs style</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "linkedin",
+            "description": "<p>Chefs linkedin</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "twitter",
+            "description": "<p>Chefs twitter</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "address",
+            "description": "<p>Chefs address</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "zip",
+            "description": "<p>Chefs zip code</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "state",
+            "description": "<p>Chefs state</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "city",
+            "description": "<p>Chefs city</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "country",
+            "description": "<p>Chefs country</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": "    HTTPS 200 OK\n{\n\"recipes\": [\n{\n  \"id\": 1,\n  \"food_name\": \"Lobster and irish whiskey salad\",\n  \"description\": \"Fresh lobster and irish whiskey served on a bed of lettuce\",\n  \"image\": \"https://s3.amazonaws.com/uifaces/faces/twitter/raphaelnikson/128.jpg\",\n  \"meal_type\": \"Dinner\",\n  \"is_liked\": false,\n  \"liked\": 0,\n  \"created_at\": \"2019-12-29 01:32:21\",\n  \"last_updated_at\": \"2019-12-31 23:08:00\",\n  \"user_id\": 10,\n  \"first_name\": \"Telly\",\n  \"last_name\": \"Metz\",\n  \"website\": \"rafael.info\",\n  \"email\": \"Friedrich_Purdy@hotmail.com\",\n  \"phone\": \"481.565.7527 x59491\",\n  \"bio\": \"Adipisci ullam voluptatum et ut molestiae facilis totam impedit quibusdam. Neque veritatis cumque quos animi officiis corporis accusantium. Aut quis ad facere inventore omnis vitae reprehenderit. Architecto quaerat minima atque voluptas porro. Ea excepturi nulla repudiandae dolorum.\",\n  \"cuisine_style\": \"Caribbean cuisine\",\n  \"linkedin\": \"https://cicero.name\",\n  \"twitter\": \"Timmothy_Hansen\",\n  \"address\": \"84959 Jennie Ways\",\n  \"zip\": \"43886\",\n  \"state\": \"MA\",\n  \"city\": \"West Groverfort\",\n  \"country\": \"Switzerland\"\n  }\n  ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/routes/posts-router-doc.js",
+    "groupTitle": "Recipe_posts"
+  },
+  {
+    "type": "get",
+    "url": "https://chef-portfolio1-bw.herokuapp.com/api",
+    "title": "List all recipes",
+    "version": "0.1.0",
+    "name": "Recipes",
+    "group": "Recipe_posts",
+    "permission": [
+      {
+        "name": "no authentication required"
+      }
+    ],
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "$http.get(url)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The post id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "food_name",
+            "description": "<p>Recipe name</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Short description of food idea</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "image",
+            "description": "<p>Add image url</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "meal_type",
+            "description": "<p>Type of recipe</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "is_liked",
+            "description": "<p>Like or not</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "liked",
+            "description": "<p>counter</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "created_at",
+            "description": "<p>Date of creation</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "last_updated_at",
+            "description": "<p>Date of last update</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Chef's id</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": "    HTTPS 200 OK\n{\n \"posts\": [\n{\n  \"id\": 1,\n  \"food_name\": \"Banana and coriander salad\",\n  \"description\": \"Fresh banana and dried coriander served on a bed of lettuce\",\n  \"image\": \"http://lorempixel.com/640/480/food\",\n  \"meal_type\": \"Dinner\",\n  \"is_liked\": 0,\n  \"liked\": 0,\n  \"created_at\": \"2019-12-29 01:32:21\",\n  \"last_updated_at\": \"2019-12-31 23:08:00\",\n  \"user_id\": 10\n}]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/routes/posts-router-doc.js",
+    "groupTitle": "Recipe_posts"
+  },
+  {
+    "type": "get",
+    "url": "https://chef-portfolio1-bw.herokuapp.com/api/user/:id",
+    "title": "List a recipes by chef 🆔",
+    "version": "0.1.0",
+    "name": "Recipes_by_chef",
+    "group": "Recipe_posts",
+    "permission": [
+      {
+        "name": "no authentication required"
+      }
+    ],
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "$http.get(url)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "recipes",
+            "description": "<p>Array of recipes by user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The post id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "food_name",
+            "description": "<p>Name of the recipe</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "image",
+            "description": "<p>Picture of food</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "meal_type",
+            "description": "<p>Type of meal: (dessert, dinner, etc)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "liked",
+            "description": "<p>Liked counter</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "created_at",
+            "description": "<p>Creation date</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "last_updated_at",
+            "description": "<p>Last updated</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Chefs 🆔</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": "    HTTPS 200 OK\n\n{\n  \"recipes\": [\n  {\n    \"id\": 8,\n    \"food_name\": \"Lemon and almond cupcakes\",\n    \"description\": \"Venison and bean stewed\",\n    \"image\": \"https://data.thefeedfeed.com/recommended/post_4053077.jpeg\",\n    \"meal_type\": \"dessert\",\n    \"is_liked\": 0,\n    \"liked\": 0,\n    \"created_at\": \"2019-12-29 01:32:21\",\n    \"last_updated_at\": \"2019-12-31 23:08:00\",\n    \"user_id\": 1\n    },\n  ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 400 Bad Request\n\n{\n  \"message\": \"Chef id: 30, has no posts\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "https://chef-portfolio1-bw.herokuapp.com/api/user/:id"
+      }
+    ],
+    "filename": "src/routes/posts-router-doc.js",
+    "groupTitle": "Recipe_posts"
   }
 ] });

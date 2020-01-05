@@ -5,7 +5,8 @@ module.exports = {
   findById,
   getUserWithRecipeAndBio,
   showUserInfoWithFood,
-  recipeWithIngredients
+  recipeWithIngredients,
+  listOfIngredients
 }
 
 function find() {
@@ -36,6 +37,22 @@ function recipeWithIngredients(recipe_id) {
     
     .where('r.id', recipe_id)
 }
+
+// get list of ingredients by recipe ID:::
+// '/:id/ingredients'
+function listOfIngredients(recipe_id) {
+  return db('ingredient as i')
+    
+    .join('recipe_ingredients as ri', function () {
+      this.on('i.id', '=', 'ri.ingredient_id');
+    })
+    .join('recipe as r', function () {
+      this.on('r.id', '=', 'ri.recipe_id');
+    })
+    .select('r.id', 'r.food_name', 'i.id', 'i.ingredient_name')
+    .where('r.id', recipe_id)
+}
+
 // display recipe with user bio
 function getUserWithRecipeAndBio(post_id) {
   return db('recipe')
