@@ -55,5 +55,25 @@ router.get('/:id', (req, res) => {
     })
 });
 
+// GET display recipe ingredients name by their id and recipe name
+router.get('/:id/ingredients', (req, res) => {
+  const id = req.params.id;
+
+  Posts.listOfIngredients(id)
+    .then(ingredient => {
+      console.log(ingredient)
+      if (ingredient.length) {
+        res.status(200).json({ingredients: ingredient})
+      } else {
+        res.status(400).json({ message: 'Cannot find ingredients for that recipe in the database'})
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({message: 'Failed to get post...'})
+    })
+});
+
+
 
 module.exports = router;

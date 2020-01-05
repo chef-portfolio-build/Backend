@@ -1,8 +1,8 @@
 /**
-    * @api {get} https://chef-portfolio1-bw.herokuapp.com/api List all blog posts
+    * @api {get} https://chef-portfolio1-bw.herokuapp.com/api List all recipes
     * @apiVersion 0.1.0
-    * @apiName Blogs
-    * @apiGroup Blog posts
+    * @apiName Recipes
+    * @apiGroup Recipe posts
     * @apiPermission no authentication required
     *
     * @apiExample {js} Example usage:
@@ -53,8 +53,8 @@
 /**
     * @api {get} https://chef-portfolio1-bw.herokuapp.com/api/:id List a recipe/blog by 🆔
     * @apiVersion 0.1.0
-    * @apiName Blog
-    * @apiGroup Blog posts
+    * @apiName Recipe
+    * @apiGroup Recipe posts
     * @apiPermission no authentication required
     *
     * @apiExample {js} Example usage:
@@ -129,8 +129,8 @@
 /**
     * @api {get} https://chef-portfolio1-bw.herokuapp.com/api/user/:id List a recipes by chef 🆔
     * @apiVersion 0.1.0
-    * @apiName Recipes
-    * @apiGroup Blog posts
+    * @apiName Recipes by chef
+    * @apiGroup Recipe posts
     * @apiPermission no authentication required
     *
     * @apiExample {js} Example usage:
@@ -181,3 +181,55 @@
     *  @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/user/:id
     * 
 **/
+
+// ****************************************************
+// ***************************************************
+// GET display recipe ingredients name by their id and recipe name
+/**
+ * @api {get} https://chef-portfolio1-bw.herokuapp.com/api/:id/ingredients List of ingredients by recipe 🆔
+ * 
+ *  * @apiVersion 0.1.0
+    * @apiName Ingredients
+    * @apiGroup Recipe posts
+    * @apiPermission no authentication required
+    *
+    * @apiExample {js} Example usage:
+    * $http.get(url)
+    *   .success((res, status) => doSomethingHere())
+    *   .error((err, status) => doSomethingHere());
+    * 
+    * @apiSuccess {Array} recipes Array of ingredients
+    * @apiSuccess {Integer} id ingredient 🆔
+    * @apiSuccess {String} food_name Name of the recipe
+    * @apiSuccess {String} ingredient_name Name of the ingredient
+
+    * 
+    * * @apiSuccessExample {json} Success response:
+    *     HTTPS 200 OK
+    * {
+    *   "ingredients": [
+    * {
+    *     "id": 9,
+    *     "food_name": "Lobster and irish whiskey salad",
+    *     "ingredient_name": "garlic"
+    * },
+    * {
+    *     "id": 12,
+    *     "food_name": "Lobster and irish whiskey salad",
+    *     "ingredient_name": "black pepper"
+    * },
+    * ]
+    *}
+    * @apiErrorExample {json} List error
+    * HTTP/1.1 400 Bad Request
+    * 
+    * {
+    *   "message": "Cannot find ingredients for that recipe in the database"
+    * }
+    * 
+    * @apiErrorExample {json} List error
+    * HTTP/1.1 500 Internal Server Error
+    * 
+    *  @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/:id/ingredients
+    * 
+ */
