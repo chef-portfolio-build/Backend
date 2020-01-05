@@ -685,7 +685,7 @@
   },
   {
     "type": "delete",
-    "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/posts/:id",
+    "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/recipe/:id",
     "title": "Delete a recipe",
     "version": "0.1.0",
     "name": "Delete",
@@ -729,7 +729,7 @@
     },
     "sampleRequest": [
       {
-        "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/posts/:id"
+        "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/recipe/:id"
       }
     ],
     "error": {
@@ -756,7 +756,7 @@
   },
   {
     "type": "get",
-    "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/postsbyuserid",
+    "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/recipesbychefid",
     "title": "Show chefs recipes only",
     "version": "0.1.0",
     "name": "Get",
@@ -800,7 +800,7 @@
     },
     "sampleRequest": [
       {
-        "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/poatsbyuserid"
+        "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/recipesbychefid"
       }
     ],
     "error": {
@@ -827,7 +827,7 @@
   },
   {
     "type": "post",
-    "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/posts",
+    "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/recipe",
     "title": "Add new recipe",
     "version": "0.1.0",
     "name": "Post",
@@ -901,7 +901,7 @@
     },
     "sampleRequest": [
       {
-        "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/posts"
+        "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/recipe"
       }
     ],
     "error": {
@@ -923,7 +923,7 @@
   },
   {
     "type": "put",
-    "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/posts/:id",
+    "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/recipe/:id",
     "title": "Edit a recipe",
     "version": "0.1.0",
     "name": "Put",
@@ -997,14 +997,19 @@
     },
     "sampleRequest": [
       {
-        "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/posts/:id"
+        "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/recipe/:id"
       }
     ],
     "error": {
       "examples": [
         {
           "title": "List Error",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \"message\": \"Hello chef username, you have no posts yet, please start posting about your delicious recipes\"\n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"message\": \"No recipe with given id: 12200\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "List Error",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"message\": \"Hello chef username, not your post or you have no posts yet, please start posting about your delicious recipes\"\n}",
           "type": "json"
         },
         {

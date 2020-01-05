@@ -2,7 +2,7 @@
 
 exports.up = function(knex) {
   return knex.schema
-    .createTable('users', tbl =>{
+    .createTable('chef', tbl =>{
       // tbl.clearCounters()
       tbl.increments();
       tbl.string('password', 128)
@@ -33,5 +33,5 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
   return knex.schema
-    .dropTableIfExists('users');
+    .dropTableIfExists('chef');
 };

@@ -13,20 +13,20 @@ module.exports = {
 };
 
 function findAll() {
-  return db('users');
+  return db('chef');
 }
 
 
 function findPosts() {
-  return db('posts')
+  return db('recipe')
 }
 
 function findBy(filter) {
-  return db('users').where(filter);
+  return db('chef').where(filter);
 }
 
 function addUser(user) {
-  return db('users')
+  return db('chef')
     .insert(user, 'id')
     .then(ids => {
       const [id] = ids;
@@ -36,7 +36,7 @@ function addUser(user) {
 
 // for validation
 function findByName(username) {
-  return db('users')
+  return db('chef')
     .select('username')
     .where({
       username
@@ -46,7 +46,7 @@ function findByName(username) {
 
 // for validation
 function findByEmail(email) {
-  return db('users')
+  return db('chef')
     .select('email')
     .where({
       email
@@ -55,7 +55,7 @@ function findByEmail(email) {
 }
 
 function findById(id) {
-  return db('users')
+  return db('chef')
     .select('id', 'username')
     .where({
       id
@@ -64,14 +64,14 @@ function findById(id) {
 }
 
 function removeUser(id) {
-  return db('users')
+  return db('chef')
     .where({ id })
     .del();
 }
 
 // Edit user info
 function editById(id, update) {
-  return db('users')
+  return db('chef')
     .where({ id })
     .update(update, '*');
 }
