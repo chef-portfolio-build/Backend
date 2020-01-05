@@ -40,11 +40,11 @@ router.get('/user/:id', (req, res) => {
 router.get('/:id', (req, res) => {
   const id = req.params.id;
   // console.log(typeof Number(id))
-  Posts.recipeWithIngredients(id)
+  Posts.getUserWithRecipeAndBio(id)
     .then(bio => {
-      // console.log(bio)
-      if (bio) {
-        res.status(200).json({recipes: bio})
+      console.log(bio)
+      if (bio.length) {
+        res.status(200).json({recipe: bio})
       } else {
         res.status(400).json({ message: 'Cannot find post in database...'})
       }
@@ -74,6 +74,28 @@ router.get('/:id/ingredients', (req, res) => {
     })
 });
 
+// get step by step instructions for recipe 🆔
+router.get('/:id/instructions', (req, res) => {
+  const id = req.params.id;
+
+  Posts.findById(id)
+    .then(ids => {
+      if (ids) {
+        Posts.getInstructions(id)
+          .then(instruction => {
+            // console.log(instruction)
+            if (instruction.length) {
+              res.status(200).json({ instructions: instruction})
+            } else {
+              res.status(404).json({ message: `No instructions for that recipe id:${id}`})
+            }
+        })
+      } else {
+        res.status(404).json({ message: `No recipe with id:${id}`})
+      }
+    })
+    .catch(err => {console.log(err); res.status(500).json({error: `internal server error ${err}`})})
+});
 
 
 module.exports = router;

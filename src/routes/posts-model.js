@@ -6,7 +6,8 @@ module.exports = {
   getUserWithRecipeAndBio,
   showUserInfoWithFood,
   recipeWithIngredients,
-  listOfIngredients
+  listOfIngredients,
+  getInstructions
 }
 
 function find() {
@@ -85,9 +86,19 @@ function getRecipeById(post_id) {
     .join('ingredients as i', 'i.id', )
 }
 
-// function findBy(id) {
-//   return db('chef')
-//     .select('chef.id', 'chef.username')
-//     .where('chef.id', id, 'chef.username')
-//     .first()
-// }
+// -- get instructions
+// SELECT r.id, r.food_name, i.step_number, i.instruction FROM recipe as r
+// INNER JOIN instructions as i
+// ON r.id = i.recipe_id
+// WHERE r.id = 4
+// ORDER BY r.id, i.step_number;
+// get step by step instructions for recipe
+function getInstructions(recipe_id) {
+  return db('recipe as r')
+    .join('instructions as i', function() {
+      this.on('r.id', '=', 'i.recipe_id')
+    })
+    .select('r.id', 'r.food_name', 'i.step_number', 'i.instruction')
+    .where('r.id', recipe_id)
+    .orderBy('r.id', 'i.step_number')
+}

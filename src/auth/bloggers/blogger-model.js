@@ -5,27 +5,27 @@ module.exports = {
   insertPost,
   updatePost,
   removePost,
-  find,
+  // find,
   getLatestPosts,
   findById,
   findByName
 }
+// - a **recipe** could have more than one **ingredient** and the same **ingredient** can be used in multiple recipes. Examples are _"cup of corn flour"_ or _"gram of butter"_.
+// - when saving the ingredients for a **recipe** capture the quantity required for that **ingredient** as a floating number.
+// - have a way to save step by step instructions for preparing a recipe.
 
-// delete later experimenting
-function find() {
-  return db('recipe');
-}
-// 
+
 function getUserPosts(user_id) {
   return db('recipe')
     .leftJoin('users', 'recipe.user_id', '=', 'users.id')
     .where({ user_id });
 }
 
-// select * from posts where user_id = 1
+// show latest post by user id...
 function getLatestPosts(id) {
   return db('recipe')
     .where('user_id', id)
+    .orderBy('created_at', 'desc')
 }
 // insert ingredient to recipe
 // INSERT INTO recipe_ingredients (recipe_id, ingredient_id)
@@ -90,3 +90,43 @@ function findByName(name) {
     .select('id')
     .where('food_name', '=', name)
 }
+
+// -- get instructions
+// SELECT r.id, r.food_name, i.step_number, i.instruction FROM recipe as r
+// INNER JOIN instructions as i
+// ON r.id = i.recipe_id
+// ORDER BY r.id, i.step_number;
+
+//
+ // get recipe by ingredient
+// SELECT r.food_name, i.ingredient_name FROM ingredient as i
+// INNER JOIN recipe_ingredients as ri
+// ON i.id = ri.ingredient_id
+// INNER JOIN recipe as r
+// ON r.id = ri.recipe_id
+// WHERE r.food_name = "Lobster and irish whiskey salad"; WHERE r.id = 4;
+
+// -- list of ingredients
+// SELECT r.id, r.food_name, I.ID, i.ingredient_name FROM ingredient as i
+// INNER JOIN recipe_ingredients as ri
+// ON i.id = ri.ingredient_id
+// INNER JOIN recipe as r
+// ON r.id = ri.recipe_id
+// WHERE r.id = 1;
+
+// INSERT INTO recipe_ingredients (recipe_id, ingredient_id)
+// VALUES (1, 13)
+
+//
+// -- add instructions
+// INSERT INTO instructions (step_number, instruction, recipe_id)
+// VALUES
+//         (1, "Heat up the water", 4), 
+//         (2, "Hunt the dear from the forest", 4),
+//         (3, "Kill it", 4),
+//         (4, "Cut in small peaces", 4);
+
+// -- add unit to ingredient
+// INSERT INTO ingredient (ingredient_name, unit_id, quantity)
+// VALUES 
+//         ("lobster", 6, 1)
