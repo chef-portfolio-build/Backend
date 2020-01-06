@@ -1,8 +1,8 @@
+// Authorized chef can do CRUD operations...
 const router = require('express').Router();
 const Recipe = require('./blogger-model');
-// const restricted = require('../middleware/auth-middleware');
-const jwt = require('../../auth/middleware/jwtAccess');
 
+const jwt = require('../../auth/middleware/jwtAccess');
 
 // pass authorization to headers only matching chef can see recipes
 router.get('/recipesbychefid/', jwt.checkToken(), (req, res) => {
@@ -14,7 +14,7 @@ router.get('/recipesbychefid/', jwt.checkToken(), (req, res) => {
       if (post.length) {
         res.status(200).json(post)
       } else {
-        res.status(404).json({ message: `Hello chef ${userName}, you have no posts yet, please start posting about your delicious recipes` });
+        res.status(404).json({ message: `Hello chef ${userName}, you have no posts yet, please start adding your delicious recipes` });
       }
     })
     .catch(err => {
@@ -37,7 +37,7 @@ router.post('/recipe', jwt.checkToken(), (req, res) => {
     .catch(err => {console.log(err); res.status(500).json({error: err})});
 });
 
-// Edit chef posts
+// Edit chefs recipe posts
 router.put('/recipe/:id', jwt.checkToken(), (req, res) => {
   const userId = req.user.subject;
   const userName = req.user.username;
@@ -93,6 +93,28 @@ router.delete('/recipe/:id', jwt.checkToken(), (req, res, next) => {
     .catch(err => {console.log(err); res.status(500).json({error: err})})
 });
 
+// Add instructions to recipe/:id chef auth
+router.post('/:id/instructions', jwt.checkToken(), (req, res) => {
+  const userId = req.user.subject;
+  const { id } = req.params;
+  const changes = req.body;
+  console.log(id)
+  Recipe.findById(id)
+    .then(ids => {
+      if (!ids) {
+        res.status(404).json({ message: `No recipe with that id: ${id}`})
+      } else {
+        if (ids.user_id === userId) {
+          Recipe.addInstructions(changes, id)
+            .then(ins => {
+              res.status(200).json({ message: `${ins} added`})
+            })
+            .catch(err => {console.log(err); res.status(404).json({error: 'No recipe'})})
+        }
+      }
+    })
+    .catch(err => {console.log(err); res.status(500).json({error: err})});
+});
 
 // SELECT * from recipe as r
 //     INNER JOIN recipe_ingredients as ri

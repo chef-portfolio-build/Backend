@@ -42,7 +42,10 @@
     * }]
     *}
     * @apiErrorExample {json} List error
-    *    HTTP/1.1 500 Internal Server Error
+    * HTTP/1.1 500 Internal Server Error
+    * 
+    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/
+    * 
     **/
 
  // ********************************************************
@@ -119,6 +122,8 @@
     *
     * @apiErrorExample {json} List error
     * HTTP/1.1 500 Internal Server Error
+    * 
+    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/:id
 **/
 
 // *******************************************
@@ -127,7 +132,7 @@
 // display recipes by chef id
 
 /**
-    * @api {get} https://chef-portfolio1-bw.herokuapp.com/api/user/:id List a recipes by chef 🆔
+    * @api {get} https://chef-portfolio1-bw.herokuapp.com/api/:id/chef List a recipes by chef 🆔
     * @apiVersion 0.1.0
     * @apiName Recipes by chef
     * @apiGroup Recipe posts
@@ -178,7 +183,7 @@
     * @apiErrorExample {json} List error
     * HTTP/1.1 500 Internal Server Error
     * 
-    *  @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/user/:id
+    *  @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/:id/chef
     * 
 **/
 
@@ -188,48 +193,102 @@
 /**
  * @api {get} https://chef-portfolio1-bw.herokuapp.com/api/:id/ingredients List of ingredients by recipe 🆔
  * 
- *  * @apiVersion 0.1.0
-    * @apiName Ingredients
-    * @apiGroup Recipe posts
-    * @apiPermission no authentication required
-    *
-    * @apiExample {js} Example usage:
-    * $http.get(url)
-    *   .success((res, status) => doSomethingHere())
-    *   .error((err, status) => doSomethingHere());
-    * 
-    * @apiSuccess {Array} recipes Array of ingredients
-    * @apiSuccess {Integer} id ingredient 🆔
-    * @apiSuccess {String} food_name Name of the recipe
-    * @apiSuccess {String} ingredient_name Name of the ingredient
+ *  
+ * @apiVersion 0.1.0
+  * @apiName Ingredients
+  * @apiGroup Recipe posts
+  * @apiPermission no authentication required
+  *
+  * @apiExample {js} Example usage:
+  * $http.get(url)
+  *   .success((res, status) => doSomethingHere())
+  *   .error((err, status) => doSomethingHere());
+  * 
+  * @apiSuccess {Array} recipes Array of ingredients
+  * @apiSuccess {Integer} id ingredient 🆔
+  * @apiSuccess {String} food_name Name of the recipe
+  * @apiSuccess {String} ingredient_name Name of the ingredient
 
-    * 
-    * * @apiSuccessExample {json} Success response:
-    *     HTTPS 200 OK
-    * {
-    *   "ingredients": [
-    * {
-    *     "id": 9,
-    *     "food_name": "Lobster and irish whiskey salad",
-    *     "ingredient_name": "garlic"
-    * },
-    * {
-    *     "id": 12,
-    *     "food_name": "Lobster and irish whiskey salad",
-    *     "ingredient_name": "black pepper"
-    * },
-    * ]
-    *}
-    * @apiErrorExample {json} List error
-    * HTTP/1.1 400 Bad Request
-    * 
-    * {
-    *   "message": "Cannot find ingredients for that recipe in the database"
-    * }
-    * 
-    * @apiErrorExample {json} List error
-    * HTTP/1.1 500 Internal Server Error
-    * 
-    *  @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/:id/ingredients
-    * 
+  * 
+  * @apiSuccessExample {json} Success response:
+  * HTTPS 200 OK
+  * {
+  *   "ingredients": [
+  * {
+  *     "id": 9,
+  *     "food_name": "Lobster and irish whiskey salad",
+  *     "ingredient_name": "garlic"
+  * },
+  * {
+  *     "id": 12,
+  *     "food_name": "Lobster and irish whiskey salad",
+  *     "ingredient_name": "black pepper"
+  * },
+  * ]
+  *}
+  * @apiErrorExample {json} List error
+  * HTTP/1.1 400 Bad Request
+  * 
+  * {
+  *   "message": "Cannot find ingredients for that recipe in the database"
+  * }
+  * 
+  * @apiErrorExample {json} List error
+  * HTTP/1.1 500 Internal Server Error
+  * 
+  *  @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/:id/ingredients
+  * 
  */
+
+ // ***********************************
+ // *************************************
+// // get step by step instructions for recipe 🆔
+ /**
+  * @api {get} https://chef-portfolio1-bw.herokuapp.com/api/:id/instructions List Step by step of instructions by recipe 🆔
+  * 
+  * @apiVersion 0.1.0
+  * @apiName Instructions
+  * @apiGroup Recipe posts
+  * @apiPermission no authentication required
+  *
+  * @apiExample {js} Example usage:
+  * $http.get(url)
+  *   .success((res, status) => doSomethingHere())
+  *   .error((err, status) => doSomethingHere());
+  * 
+  * @apiSuccess {Array} recipes Array of instructions
+  * @apiSuccess {Integer} id instructions 🆔
+  * @apiSuccess {String} food_name Name of the recipe
+  * @apiSuccess {Integer} step_number instructions 🆔
+  * @apiSuccess {String} instructions How to instruction
+  * 
+  * @apiSuccessExample {json} Success response:
+  * HTTPS 200 OK
+  * {
+  *   "instructions": [
+  *   {
+  *     "id": 1,
+  *     "food_name": "Lobster and irish whiskey salad",
+  *     "step_number": 1,
+  *     "instruction": "Cut the lobster in two down the centre. "
+  *   },
+  *   {
+  *     "id": 1,
+  *     "food_name": "Lobster and irish whiskey salad",
+  *     "step_number": 2,
+  *     "instruction": "Remove all the meat, including the claws, retain the shell for serving."
+  *  },
+  * ]
+  * }
+  * @apiErrorExample {json} List error
+  * HTTP/1.1 404 Bad Request
+  * {
+  *   "message": "No instructions for that recipe id:100"
+  * }
+  *  
+  * @apiErrorExample {json} List error
+  * HTTP/1.1 500 Internal Server Error
+  * 
+  *  @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/:id/instructions
+  * 
+  */

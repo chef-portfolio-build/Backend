@@ -2,16 +2,26 @@ const db = require('../database/dbConfig');
 
 module.exports = {
   find,
+  // findChef,
   findById,
   getUserWithRecipeAndBio,
   showUserInfoWithFood,
   recipeWithIngredients,
-  listOfIngredients
+  listOfIngredients,
+  getInstructions
 }
 
 function find() {
   return db('recipe');
 }
+
+// find chef by 🆔
+// function findChef(chef_id) {
+//   return db('chef')
+//     .select('id')
+//     .where({ chef_id })
+//     .first();
+// }
 // find recipe by id
 function findById(id) {
   return db('recipe')
@@ -72,22 +82,32 @@ function showUserInfoWithFood(chef_id) {
     .where('chef.id', chef_id)
 }
 
+// -- get instructions
+// SELECT r.id, r.food_name, i.step_number, i.instruction FROM recipe as r
+// INNER JOIN instructions as i
+// ON r.id = i.recipe_id
+// WHERE r.id = 4
+// ORDER BY r.id, i.step_number;
+// get step by step instructions for recipe
+function getInstructions(recipe_id) {
+  return db('recipe as r')
+    .join('instructions as i', function() {
+      this.on('r.id', '=', 'i.recipe_id')
+    })
+    .select('r.id', 'r.food_name', 'i.step_number', 'i.instruction')
+    .where('r.id', recipe_id)
+    .orderBy('r.id', 'i.step_number')
+}
+
 // filter recipe by recipe title, meal type,  chef, and ingredients.
-function filterBy(filter) {
-  return db('recipe')
-    .select('recipe.*', 'chef.username')
-}
+// function filterBy(filter) {
+//   return db('recipe')
+//     .select('recipe.*', 'chef.username')
+// }
 
-function getRecipeById(post_id) {
-  return db('recipe')
-    .join('recipe_ingredients as ri', 'ri.recipe_id', 'recipe.id')
-    .select('recipe.*', 'chef.username')
-    .join('ingredients as i', 'i.id', )
-}
-
-// function findBy(id) {
-//   return db('chef')
-//     .select('chef.id', 'chef.username')
-//     .where('chef.id', id, 'chef.username')
-//     .first()
+// function getRecipeById(post_id) {
+//   return db('recipe')
+//     .join('recipe_ingredients as ri', 'ri.recipe_id', 'recipe.id')
+//     .select('recipe.*', 'chef.username')
+//     .join('ingredients as i', 'i.id', )
 // }

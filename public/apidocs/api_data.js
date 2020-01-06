@@ -660,7 +660,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success response:",
-          "content": "    HTTPS 200 OK\n{\n  \"ingredients\": [\n{\n    \"id\": 9,\n    \"food_name\": \"Lobster and irish whiskey salad\",\n    \"ingredient_name\": \"garlic\"\n},\n{\n    \"id\": 12,\n    \"food_name\": \"Lobster and irish whiskey salad\",\n    \"ingredient_name\": \"black pepper\"\n},\n]\n}",
+          "content": "HTTPS 200 OK\n{\n  \"ingredients\": [\n{\n    \"id\": 9,\n    \"food_name\": \"Lobster and irish whiskey salad\",\n    \"ingredient_name\": \"garlic\"\n},\n{\n    \"id\": 12,\n    \"food_name\": \"Lobster and irish whiskey salad\",\n    \"ingredient_name\": \"black pepper\"\n},\n]\n}",
           "type": "json"
         }
       ]
@@ -682,6 +682,95 @@ define({ "api": [
     "sampleRequest": [
       {
         "url": "https://chef-portfolio1-bw.herokuapp.com/api/:id/ingredients"
+      }
+    ],
+    "filename": "src/routes/posts-router-doc.js",
+    "groupTitle": "Recipe_posts"
+  },
+  {
+    "type": "get",
+    "url": "https://chef-portfolio1-bw.herokuapp.com/api/:id/instructions",
+    "title": "List Step by step of instructions by recipe 🆔",
+    "version": "0.1.0",
+    "name": "Instructions",
+    "group": "Recipe_posts",
+    "permission": [
+      {
+        "name": "no authentication required"
+      }
+    ],
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "$http.get(url)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "recipes",
+            "description": "<p>Array of instructions</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>instructions 🆔</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "food_name",
+            "description": "<p>Name of the recipe</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "step_number",
+            "description": "<p>instructions 🆔</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "instructions",
+            "description": "<p>How to instruction</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": "HTTPS 200 OK\n{\n  \"instructions\": [\n  {\n    \"id\": 1,\n    \"food_name\": \"Lobster and irish whiskey salad\",\n    \"step_number\": 1,\n    \"instruction\": \"Cut the lobster in two down the centre. \"\n  },\n  {\n    \"id\": 1,\n    \"food_name\": \"Lobster and irish whiskey salad\",\n    \"step_number\": 2,\n    \"instruction\": \"Remove all the meat, including the claws, retain the shell for serving.\"\n },\n]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 404 Bad Request\n{\n  \"message\": \"No instructions for that recipe id:100\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "https://chef-portfolio1-bw.herokuapp.com/api/:id/instructions"
       }
     ],
     "filename": "src/routes/posts-router-doc.js",
@@ -875,6 +964,11 @@ define({ "api": [
         }
       ]
     },
+    "sampleRequest": [
+      {
+        "url": "https://chef-portfolio1-bw.herokuapp.com/api/:id"
+      }
+    ],
     "filename": "src/routes/posts-router-doc.js",
     "groupTitle": "Recipe_posts"
   },
@@ -989,12 +1083,17 @@ define({ "api": [
         }
       ]
     },
+    "sampleRequest": [
+      {
+        "url": "https://chef-portfolio1-bw.herokuapp.com/api/"
+      }
+    ],
     "filename": "src/routes/posts-router-doc.js",
     "groupTitle": "Recipe_posts"
   },
   {
     "type": "get",
-    "url": "https://chef-portfolio1-bw.herokuapp.com/api/user/:id",
+    "url": "https://chef-portfolio1-bw.herokuapp.com/api/:id/chef",
     "title": "List a recipes by chef 🆔",
     "version": "0.1.0",
     "name": "Recipes_by_chef",
@@ -1103,7 +1202,7 @@ define({ "api": [
     },
     "sampleRequest": [
       {
-        "url": "https://chef-portfolio1-bw.herokuapp.com/api/user/:id"
+        "url": "https://chef-portfolio1-bw.herokuapp.com/api/:id/chef"
       }
     ],
     "filename": "src/routes/posts-router-doc.js",
