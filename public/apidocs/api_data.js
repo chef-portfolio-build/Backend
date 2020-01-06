@@ -1093,7 +1093,7 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "https://chef-portfolio1-bw.herokuapp.com/api/user/:id",
+    "url": "https://chef-portfolio1-bw.herokuapp.com/api/:id/chef",
     "title": "List a recipes by chef 🆔",
     "version": "0.1.0",
     "name": "Recipes_by_chef",
@@ -1202,7 +1202,7 @@ define({ "api": [
     },
     "sampleRequest": [
       {
-        "url": "https://chef-portfolio1-bw.herokuapp.com/api/user/:id"
+        "url": "https://chef-portfolio1-bw.herokuapp.com/api/:id/chef"
       }
     ],
     "filename": "src/routes/posts-router-doc.js",

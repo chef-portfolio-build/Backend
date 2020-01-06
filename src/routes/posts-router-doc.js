@@ -132,7 +132,7 @@
 // display recipes by chef id
 
 /**
-    * @api {get} https://chef-portfolio1-bw.herokuapp.com/api/user/:id List a recipes by chef 🆔
+    * @api {get} https://chef-portfolio1-bw.herokuapp.com/api/:id/chef List a recipes by chef 🆔
     * @apiVersion 0.1.0
     * @apiName Recipes by chef
     * @apiGroup Recipe posts
@@ -183,7 +183,7 @@
     * @apiErrorExample {json} List error
     * HTTP/1.1 500 Internal Server Error
     * 
-    *  @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/user/:id
+    *  @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/:id/chef
     * 
 **/
 

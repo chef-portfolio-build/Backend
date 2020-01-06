@@ -14,15 +14,11 @@ router.get('/', (req, res) => {
 });
 
 // GET display all recipes by user id 
-router.get('/user/:id', (req, res) => {
+router.get('/:id/chef', (req, res) => {
   const { id } = req.params;
-  // Posts.findBy(id)
-  //   .then(ids => {
-  //     console.log(ids.id)
-  //   })
+  
   Posts.showUserInfoWithFood(id)
     .then(recipe => {
-      console.log(recipe)
       if (recipe.length) {
         res.status(200).json({recipes: recipe})
       } else {
@@ -39,7 +35,7 @@ router.get('/user/:id', (req, res) => {
 // GET display single recipe by recipe id and chef bio
 router.get('/:id', (req, res) => {
   const id = req.params.id;
-  // console.log(typeof Number(id))
+  
   Posts.getUserWithRecipeAndBio(id)
     .then(bio => {
       console.log(bio)

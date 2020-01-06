@@ -9,7 +9,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('./middleware/jwtAccess');
 const Users = require('./auth-model');
 
-
 // POST register new chef
 router.post('/register', validateNewUser, (req, res) => {
     const user = req.body;
@@ -27,7 +26,6 @@ router.post('/register', validateNewUser, (req, res) => {
         res.status(500).json(err);
       })
 });
-
 
 // login user
 router.post('/login', validateLogin, (req, res) => {
@@ -49,7 +47,6 @@ router.post('/login', validateLogin, (req, res) => {
       res.status(500).json(err);
     });
 });
-
 
 // Edit user information PUT
 router.put('/:id', jwt.checkToken(), (req, res) => {
@@ -84,27 +81,27 @@ router.put('/:id', jwt.checkToken(), (req, res) => {
 
 // Only for admins to delete a user
 // Delete user, provide a login token in the header.
-router.delete('/:id', restricted, (req, res, next) => {
-  const { id } = req.params;
+// router.delete('/:id', restricted, (req, res, next) => {
+//   const { id } = req.params;
 
-  Users.findById(id)
-    .then(user => {
-      if (user) {
-        Users.removeUser(id)
-          .then(user => {
-            console.log(user)
-            res.status(201).json({ message: `User deleted..`})
-          })
-          .catch(err => {
-            console.log(err);
-            res.status(500).json({ error: `Error deleting user ${err} `})
-      })
-      } else {
-        res.status(400).json({ message: 'No user in database..'})
-      }
-    })
-    .catch(err => { res.status(500).json({ error: err })});
-});
+//   Users.findById(id)
+//     .then(user => {
+//       if (user) {
+//         Users.removeUser(id)
+//           .then(user => {
+//             console.log(user)
+//             res.status(201).json({ message: `User deleted..`})
+//           })
+//           .catch(err => {
+//             console.log(err);
+//             res.status(500).json({ error: `Error deleting user ${err} `})
+//       })
+//       } else {
+//         res.status(400).json({ message: 'No user in database..'})
+//       }
+//     })
+//     .catch(err => { res.status(500).json({ error: err })});
+// });
 
 module.exports = router;
 

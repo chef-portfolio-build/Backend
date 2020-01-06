@@ -5,6 +5,7 @@ module.exports = {
   insertPost,
   updatePost,
   removePost,
+  addInstructions,
   // find,
   getLatestPosts,
   findById,
@@ -38,13 +39,22 @@ function getLatestPosts(id) {
 //     INNER JOIN ingredients as i
 //         ON i.id = ri.ingredient_id
 
-function insertRecipeWithInstructions(post, user_id) {
-  return db('recipe')
-    .join('')
-    .insert({ ...post, user_id })
-    .then(id => {
-      return db('posts').where({ id: id[0] });
-    })
+// -- add instructions
+// INSERT INTO instructions (step_number, instruction, recipe_id)
+// VALUES
+//         (1, "Heat up the water", 4), 
+//         (2, "Hunt the dear from the forest", 4),
+//         (3, "Kill it", 4),
+//         (4, "Cut in small peaces", 4);
+
+function addInstructions(instruction, recipe_id) {
+  return db('instructions')
+    .select('step_number', 'instruction', 'recipe_id')
+    .insert({ ...instruction, recipe_id })
+    // .then(id => {
+    //   return db('instructions')
+    //     .where({ id: id[0] });
+    // })
 }
 
 function insertPost(post, user_id) {
