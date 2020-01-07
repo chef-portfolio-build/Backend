@@ -3,6 +3,7 @@ const db = require('../../database/dbConfig');
 module.exports = {
   // getUserPosts,
   insertPost,
+  findChefById,
   updatePost,
   removePost,
   addInstructions,
@@ -10,7 +11,8 @@ module.exports = {
   getLatestPosts,
   findById,
   findByName,
-  updateInstructions
+  updateInstructions,
+  deleteInstruction
 }
 // - a **recipe** could have more than one **ingredient** and the same **ingredient** can be used in multiple recipes. Examples are _"cup of corn flour"_ or _"gram of butter"_.
 // - when saving the ingredients for a **recipe** capture the quantity required for that **ingredient** as a floating number.
@@ -19,8 +21,15 @@ module.exports = {
 
 function getUserPosts(user_id) {
   return db('recipe')
-    .leftJoin('users', 'recipe.user_id', '=', 'users.id')
+    .join('users', 'recipe.user_id', '=', 'users.id')
     .where({ user_id });
+}
+
+// find chef by 🆔
+function findChefById(id) {
+  return db('chef')
+    .where('id', id)
+    .first();
 }
 
 // show latest post by user id...
@@ -81,18 +90,32 @@ function findInstructions(id) {
 //       AND step_number = 2
 
 // update instructions:
-function updateInstructions(step_number, changes, id) {
+function updateInstructions(id, changes) {
   return db('instructions')
-
-    .where({
-      recipe_id: id
-    })
+    .where({id})
     .update(changes)
-    .then(count => findInstructions(id))
-}
 
-function deleteInstruction(ins_id, recipe_id) {
-  return db()
+}
+// knex('recipe').where('id', 13).select('id').first()
+//     .then(recipe => {
+//          return knex('recipe').where({recipe_id: recipe.id, step_number: 2}).update('instruction', 'Testing edit')     
+//      })
+// function updateInstruction(step_number, changes, recipe_id) {
+//   return db('instructions')
+//     .where('recipe_id', recipe_id)
+//     .select('id').first()
+//     .then(recipe => {
+//       console.log('id::: ',recipe) 
+//          return db('instructions')
+//          .where({recipe_id: recipe.id, step_number: step_number})
+//          .update('instruction', changes)     
+//      })
+// }
+
+function deleteInstruction(id) {
+  return db('instructions')
+    .where('id', id)
+    .del();
 }
 // INSERT INTO recipe_ingredients (recipe_id, ingredient_id)
 // VALUES (4, 15)
