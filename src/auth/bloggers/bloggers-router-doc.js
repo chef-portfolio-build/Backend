@@ -202,3 +202,59 @@
     * @apiErrorExample {json} List error
     * HTTP/1.1 500 Internal Server Error
     **/
+
+// ****************************************
+// ****************************************
+// Add instructions to recipe/:id chef auth
+/**
+    * @api {post} https://chef-portfolio1-bw.herokuapp.com/api/private/:id/instructions Add a instruction for a recipe
+    * @apiVersion 0.1.0
+    * @apiName Add instruction
+    * @apiGroup Blogs auth
+    * @apiPermission authenticate user first to get token
+    * 
+    * @apiParam (Request header) {String} Authorization token
+    * 
+    * @apiParam (Request body) {Integer} step_number instruction step number
+    * @apiParam (Request body) {String} instruction Instruction description
+    * @apiParam (Request body) {Integer} recipe_id 🆔 of the recipe
+    * @apiExample {json} Example usage, required:
+    * 
+    * {
+	  *   "step_number": 2,
+	  *   "instruction": "Meanwhile, combine remaining teaspoon cumin, 2 teaspoons sumac, remaining tablespoon pepper flakes,....",
+	  *   "recipe_id": 13
+    * }
+    * 
+    *  @apiSuccess
+    * message 🆔 added successfully
+    * 
+    * @apiSuccessExample {json} Success example
+    * HTTP/1.1 200 OK
+    *[
+    * {
+    *   id": 21,
+    *   "step_number": 2,
+    *   "instruction": "Meanwhile, combine remaining teaspoon cumin, 2 teaspoons sumac, remaining tablespoon pepper flakes...",
+    *   "recipe_id": 13
+    *   }
+    * ]
+    * 
+    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/private/:id/instructions
+    * 
+    * @apiErrorExample {json} List Error
+    * HTTP/1.1 404 Not Found
+    * {
+    *   "message": "No recipe with that id: 14"
+    * }
+    * 
+    * @apiErrorExample {json} Unauthorized error
+    * HTTP/1.1 401 Unauthorized
+    * {
+    *   "message": "Invalid Token, you will need to Log back in"
+    * }
+    * 
+    * @apiErrorExample {json} List error
+    * HTTP/1.1 500 Internal Server Error
+    * 
+ */
