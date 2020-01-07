@@ -1,13 +1,14 @@
 const db = require('../../database/dbConfig');
 
 module.exports = {
-  // getUserPosts,
+  getUserPosts,
   insertPost,
   findChefById,
   updatePost,
   removePost,
   addInstructions,
   findInstructions,
+  findInstructionWith,
   getLatestPosts,
   findById,
   findByName,
@@ -18,11 +19,11 @@ module.exports = {
 // - when saving the ingredients for a **recipe** capture the quantity required for that **ingredient** as a floating number.
 // - have a way to save step by step instructions for preparing a recipe.
 
-
 function getUserPosts(user_id) {
   return db('recipe')
-    .join('users', 'recipe.user_id', '=', 'users.id')
-    .where({ user_id });
+    // .join('chef', 'recipe.user_id', '=', user_id)
+    .where('user_id', user_id)
+    // .first() // returns the first found object
 }
 
 // find chef by 🆔
@@ -79,6 +80,11 @@ function findInstructions(id) {
   return db('instructions')
     .where({ id })
     .first()
+}
+function findInstructionWith(recipe_id) {
+  return db('instructions')
+    .where({ recipe_id })
+    // .first();
 }
 // UPDATE instructions
 // SET instruction = "Testing edit"

@@ -123,16 +123,11 @@ router.put('/:id/instructions', jwt.checkToken(), (req, res) => {
   const { id } = req.params; 
   const changes = req.body;
 
-  Recipe.findChefById(userId)
-    .then(ids => {
-      const chef_id = ids.id;
-      console.log(chef_id)
-    })
   // first lets check if chef has a recipe with that instruction 🆔
   // if (ids.user_id === userId) {
   //   console.log(object)
   // }
-// get instruction 🆔
+  // get instruction 🆔
   Recipe.findInstructions(id)
     .then(ids => {
       // console.log(ids)
@@ -242,3 +237,28 @@ router.get('/recipe/', jwt.checkToken(), (req,res) => {
 // - have a way to save step by step instructions for preparing a recipe.
 
 module.exports = router;
+
+
+  // Recipe.findChefById(userId)
+  //   .then(ids => {
+  //     const chef_id = ids.id;
+  //     // console.log(chef_id)
+  //     Recipe.getUserPosts(userId)
+  //       .then(p => {
+          
+  //         if (!p) {
+  //           res.status(404).json({message: 'No posts for you'})
+  //         } else {
+  //           p.forEach(e => {
+  //             console.log(e.id)
+  //             Recipe.findInstructionWith(e.id)
+  //               .then(ids => {
+  //                 console.log(ids)
+  //               })
+  //           })
+            
+
+  //           // let ids = [...p.id]
+  //         }
+  //       })
+  //   })
