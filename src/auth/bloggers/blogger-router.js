@@ -126,27 +126,46 @@ router.put('/:id/instructions', jwt.checkToken(), (req, res) => {
   Recipe.findChefById(userId)
     .then(ids => {
       const chef_id = ids.id;
-      console.log(chef_id)
+      // console.log(chef_id)
+      Recipe.getUserPosts(userId)
+        .then(p => {
+          
+          if (!p) {
+            res.status(404).json({message: 'No posts for you'})
+          } else {
+            p.forEach(e => {
+              console.log(e.id)
+              Recipe.findInstructionWith(e.id)
+                .then(ids => {
+                  console.log(ids)
+                })
+            })
+            
+
+            // let ids = [...p.id]
+          }
+        })
     })
+
   // first lets check if chef has a recipe with that instruction 🆔
   // if (ids.user_id === userId) {
   //   console.log(object)
   // }
 // get instruction 🆔
-  Recipe.findInstructions(id)
-    .then(ids => {
-      // console.log(ids)
-      if (!ids) {
-        res.status(404).json({ message: `No instructions with that id: ${id}`})
-      } else {
-        Recipe.updateInstructions(id, changes)
-          .then(c => {
-            res.status(201).json({changes, id})
-          })
-          .catch(err => {console.log(err); res.status(500).json({error: err})})
-      }
-    })
-    .catch(err => {console.log(err); res.status(500).json({error: err})})
+  // Recipe.findInstructions(id)
+  //   .then(ids => {
+  //     // console.log(ids)
+  //     if (!ids) {
+  //       res.status(404).json({ message: `No instructions with that id: ${id}`})
+  //     } else {
+  //       Recipe.updateInstructions(id, changes)
+  //         .then(c => {
+  //           res.status(201).json({changes, id})
+  //         })
+  //         .catch(err => {console.log(err); res.status(500).json({error: err})})
+  //     }
+  //   })
+  //   .catch(err => {console.log(err); res.status(500).json({error: err})})
 });
 
 // delete/remove instruction by recipe id
