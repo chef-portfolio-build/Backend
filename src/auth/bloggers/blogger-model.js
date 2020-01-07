@@ -6,10 +6,11 @@ module.exports = {
   updatePost,
   removePost,
   addInstructions,
-  // find,
+  findInstructions,
   getLatestPosts,
   findById,
-  findByName
+  findByName,
+  updateInstructions
 }
 // - a **recipe** could have more than one **ingredient** and the same **ingredient** can be used in multiple recipes. Examples are _"cup of corn flour"_ or _"gram of butter"_.
 // - when saving the ingredients for a **recipe** capture the quantity required for that **ingredient** as a floating number.
@@ -27,6 +28,14 @@ function getLatestPosts(id) {
   return db('recipe')
     .where('user_id', id)
     .orderBy('created_at', 'desc')
+}
+
+function insertPost(post, user_id) {
+  return db('recipe')
+    .insert({ ...post, user_id })
+    .then(id => {
+      return db('recipe').where({ id: id[0] });
+    })
 }
 // insert ingredient to recipe
 // INSERT INTO recipe_ingredients (recipe_id, ingredient_id)
@@ -51,18 +60,39 @@ function addInstructions(instruction, recipe_id) {
   return db('instructions')
     .select('step_number', 'instruction', 'recipe_id')
     .insert({ ...instruction, recipe_id })
-    // .then(id => {
-    //   return db('instructions')
-    //     .where({ id: id[0] });
-    // })
+    .then(id => {
+      return db('instructions')
+        .where({ id: id[0] });
+    })
 }
 
-function insertPost(post, user_id) {
-  return db('recipe')
-    .insert({ ...post, user_id })
-    .then(id => {
-      return db('recipe').where({ id: id[0] });
+function findInstructions(id) {
+  return db('instructions')
+    .where({ id })
+    .first()
+}
+// UPDATE instructions
+// SET instruction = "Testing edit"
+// WHERE recipe_id = (
+//                           SELECT id 
+//                           FROM recipe 
+//                           WHERE id = 13
+//                         )
+//       AND step_number = 2
+
+// update instructions:
+function updateInstructions(step_number, changes, id) {
+  return db('instructions')
+
+    .where({
+      recipe_id: id
     })
+    .update(changes)
+    .then(count => findInstructions(id))
+}
+
+function deleteInstruction(ins_id, recipe_id) {
+  return db()
 }
 // INSERT INTO recipe_ingredients (recipe_id, ingredient_id)
 // VALUES (4, 15)

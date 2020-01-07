@@ -98,16 +98,17 @@ router.post('/:id/instructions', jwt.checkToken(), (req, res) => {
   const userId = req.user.subject;
   const { id } = req.params;
   const changes = req.body;
-  console.log(id)
+  // find the recipe first
   Recipe.findById(id)
     .then(ids => {
       if (!ids) {
         res.status(404).json({ message: `No recipe with that id: ${id}`})
       } else {
         if (ids.user_id === userId) {
+          // add an instruction
           Recipe.addInstructions(changes, id)
             .then(ins => {
-              res.status(200).json({ message: `${ins} added`})
+              res.status(201).json(ins);
             })
             .catch(err => {console.log(err); res.status(404).json({error: 'No recipe'})})
         }
@@ -116,6 +117,44 @@ router.post('/:id/instructions', jwt.checkToken(), (req, res) => {
     .catch(err => {console.log(err); res.status(500).json({error: err})});
 });
 
+// edit instruction by 🆔
+router.put('/:id/instructions', jwt.checkToken(), (req, res) => {
+  const userId = req.user.subject;
+  const { id } = req.params; 
+  const changes = req.body;
+// get instruction 🆔
+  Recipe.findInstructions(id)
+    .then(ids => {
+      console.log(ids)
+      if (!ids) {
+        res.status(404).json({ message: `No instructions with that id: ${id}`})
+      } else {
+        Recipe.updateInstructions(ids.step_number, changes, id)
+          .then(c => {
+            res.status(201).json(changes)
+          })
+      }
+    })
+});
+// delete/remove instruction by recipe id
+router.delete('/:id/instructions', jwt.checkToken(), (req, res) => {
+  const userId = req.user.subject;
+  const { id } = req.params;
+
+  // find the recipe first
+  Recipe.findById(id)
+    .then(ids => {
+      if (!ids) {
+        res.status(404).json({ message: `No recipe with that id: ${id}`})
+      } else {
+        if (ids.user_id === userId) {
+          
+        }
+      }
+    })
+});
+
+// remove instruction
 // SELECT * from recipe as r
 //     INNER JOIN recipe_ingredients as ri
 //         ON r.id = ri.recipe_id

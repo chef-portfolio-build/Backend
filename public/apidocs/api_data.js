@@ -262,6 +262,107 @@ define({ "api": [
     "groupTitle": "Auth"
   },
   {
+    "type": "post",
+    "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/:id/instructions",
+    "title": "Add a instruction for a recipe",
+    "version": "0.1.0",
+    "name": "Add_instruction",
+    "group": "Blogs_auth",
+    "permission": [
+      {
+        "name": "authenticate user first to get token"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Request header": [
+          {
+            "group": "Request header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ],
+        "Request body": [
+          {
+            "group": "Request body",
+            "type": "Integer",
+            "optional": false,
+            "field": "step_number",
+            "description": "<p>instruction step number</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "instruction",
+            "description": "<p>Instruction description</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "Integer",
+            "optional": false,
+            "field": "recipe_id",
+            "description": "<p>🆔 of the recipe</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage, required:",
+        "content": "\n{\n  \"step_number\": 2,\n  \"instruction\": \"Meanwhile, combine remaining teaspoon cumin, 2 teaspoons sumac, remaining tablespoon pepper flakes,....\",\n  \"recipe_id\": 13\n}",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "message",
+            "description": "<p>🆔 added successfully</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success example",
+          "content": "HTTP/1.1 200 OK\n[\n{\n  id\": 21,\n  \"step_number\": 2,\n  \"instruction\": \"Meanwhile, combine remaining teaspoon cumin, 2 teaspoons sumac, remaining tablespoon pepper flakes...\",\n  \"recipe_id\": 13\n  }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/:id/instructions"
+      }
+    ],
+    "error": {
+      "examples": [
+        {
+          "title": "List Error",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"message\": \"No recipe with that id: 14\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Unauthorized error",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n  \"message\": \"Invalid Token, you will need to Log back in\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/auth/bloggers/bloggers-router-doc.js",
+    "groupTitle": "Blogs_auth"
+  },
+  {
     "type": "delete",
     "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/recipe/:id",
     "title": "Delete a recipe",

@@ -11,6 +11,7 @@ exports.up = function(knex) {
         .inTable('recipe')
         .onDelete('CASCADE')
         .onUpdate('CASCADE')
+      // tbl.unique(['step_number', 'recipe_id']);
     })
 };
 
