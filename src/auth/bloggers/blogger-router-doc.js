@@ -58,7 +58,7 @@
 /**
     * @api {post} https://chef-portfolio1-bw.herokuapp.com/api/private/recipe Add new recipe
     * @apiVersion 0.1.0
-    * @apiName Post
+    * @apiName Add
     * @apiGroup Blogs auth
     * @apiPermission authenticate a blog auth user login
     *
@@ -112,7 +112,7 @@
     /**
     * @api {put} https://chef-portfolio1-bw.herokuapp.com/api/private/recipe/:id Edit a recipe
     * @apiVersion 0.1.0
-    * @apiName Put
+    * @apiName Edit
     * @apiGroup Blogs auth
     * @apiPermission authenticate user first to get token
     *
@@ -181,7 +181,7 @@
     * message "Recipe deleted successfully"
     * 
     * @apiSuccessExample {json} Success example
-    * HTTP/1.1 200 OK
+    * HTTP/1.1 204 No Content
     *{
     *  message: 'Recipe deleted successfully.'
     *}
@@ -230,7 +230,7 @@
     * message 🆔 added successfully
     * 
     * @apiSuccessExample {json} Success example
-    * HTTP/1.1 200 OK
+    * HTTP/1.1 201 Created
     *[
     * {
     *   id": 21,
@@ -258,3 +258,44 @@
     * HTTP/1.1 500 Internal Server Error
     * 
  */
+
+ // ****************************************
+// ****************************************
+// Add instructions to recipe/:id chef auth
+/**
+    * @api {put} https://chef-portfolio1-bw.herokuapp.com/api/private/:id/instructions Edit a instruction
+    * 
+    * @apiVersion 0.1.0
+    * @apiName Edit instructions
+    * @apiGroup Blogs auth
+    * @apiPermission authenticate user first to get token
+    * 
+    * @apiParam (Request header) {String} Authorization token
+    * 
+    * @apiParam (Request body) {String} instruction Instruction description to change
+    * 
+    * @apiExample {json} Example usage, required:
+    * HTTP/1.1 201 Created
+    * {
+    *     "changes": {
+    *     "instruction": "logic working id 13 instructions"
+    * },
+    *   "id": "13"
+    * }
+    * 
+    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/private/:id/instructions
+    * 
+    * @apiErrorExample {json} List Error
+    * HTTP/1.1 404 Not Found
+    * {
+    *   "message": "No instructions with that id: 🆔"
+    * }
+    * @apiErrorExample {json} Unauthorized error
+    * HTTP/1.1 401 Unauthorized
+    * {
+    *   "message": "Invalid Token, you will need to Log back in"
+    * }
+    * 
+    * @apiErrorExample {json} List error
+    * HTTP/1.1 500 Internal Server Error
+*/
