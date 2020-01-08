@@ -268,7 +268,7 @@
     * @apiVersion 0.1.0
     * @apiName Edit instructions
     * @apiGroup Blogs auth
-    * @apiPermission authenticate user first to get token
+    * @apiPermission authenticate user to get token
     * 
     * @apiParam (Request header) {String} Authorization token
     * 
@@ -278,7 +278,7 @@
     * HTTP/1.1 201 Created
     * {
     *     "changes": {
-    *     "instruction": "logic working id 13 instructions"
+    *     "instruction": "Heat the water for chicken"
     * },
     *   "id": "13"
     * }
@@ -299,3 +299,47 @@
     * @apiErrorExample {json} List error
     * HTTP/1.1 500 Internal Server Error
 */
+
+// **********************
+// // Add ingredients:
+/**
+  * @api {post} https://chef-portfolio1-bw.herokuapp.com/api/private/:id/ingredient Add an ingredient to recipe
+  * 
+  * @apiVersion 0.1.0
+  * @apiName Add ingredient
+  * @apiGroup Blogs auth
+  * @apiPermission authenticate user to get token
+  * 
+  * @apiParam (Request header) {String} Authorization token
+  * 
+  * @apiParam (Request body) {String} ingredient_id add ingredient 🆔
+  * @apiExample {json} Example usage, required:
+  * HTTP/1.1 201 Created
+  * {
+	*   "ingredient_id": 1
+  * }
+  * 
+  * 
+  * 
+  * @apiErrorExample {json} List error
+  * HTTP/1.1 401 Unauthorized
+  * {
+  *    "error": "No Token Provided, you will need to Login!"
+  * }
+  * 
+  * @apiErrorExample {json} List error
+  * HTTP/1.1 400 Bad Request
+  * {
+  *   "message": "Already added id:14, use another ingredient."
+  * }
+  * 
+  * @apiErrorExample {json} List error
+  * HTTP/1.1 400 Bad Request
+  * {
+  *   "message": "No ingredient with that 🆔 14"
+  * }
+  * 
+  * @apiErrorExample {json} List error
+    * HTTP/1.1 500 Internal Server Error
+  * 
+**/

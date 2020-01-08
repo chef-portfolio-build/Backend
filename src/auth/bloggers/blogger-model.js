@@ -13,7 +13,10 @@ module.exports = {
   findById,
   findByName,
   updateInstructions,
-  deleteInstruction
+  deleteInstruction,
+  addRecipeIngredient,
+  checkRecipeIngredient,
+  findIngredient
 }
 // - a **recipe** could have more than one **ingredient** and the same **ingredient** can be used in multiple recipes. Examples are _"cup of corn flour"_ or _"gram of butter"_.
 // - when saving the ingredients for a **recipe** capture the quantity required for that **ingredient** as a floating number.
@@ -125,9 +128,29 @@ function deleteInstruction(id) {
 }
 // INSERT INTO recipe_ingredients (recipe_id, ingredient_id)
 // VALUES (4, 15)
-function insertRecipeIngredient(recipe_id, ingredient_id) {
+function addRecipeIngredient(recipe_id, ingredient_id) {
   return db('recipe_ingredients')
-    .insert({ ...recipe_id, ingredient_id})
+    .insert({
+      recipe_id: recipe_id,
+      ingredient_id: ingredient_id,
+    })
+    .then(ids => {
+      return findById(ids[0])
+    })
+}
+// don't pass same ingredient_id
+function checkRecipeIngredient(ingredient_id) {
+  return db('recipe_ingredients')
+    .where('ingredient_id', ingredient_id)
+    .first()
+}
+function findIngredient(id) {
+  return db('ingredient')
+    .where('id', id)
+    .first()
+    // .then(ids => {
+
+    // })
 }
 // UPDATE recipe
 // SET instructions = "Hello world, this is how you make cheese burger"
@@ -159,6 +182,7 @@ function findByName(name) {
     .select('id')
     .where('food_name', '=', name)
 }
+
 
 // -- get instructions
 // SELECT r.id, r.food_name, i.step_number, i.instruction FROM recipe as r

@@ -389,6 +389,74 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/:id/ingredient",
+    "title": "Add an ingredient to recipe",
+    "version": "0.1.0",
+    "name": "Add_ingredient",
+    "group": "Blogs_auth",
+    "permission": [
+      {
+        "name": "authenticate user to get token"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Request header": [
+          {
+            "group": "Request header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ],
+        "Request body": [
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "ingredient_id",
+            "description": "<p>add ingredient 🆔</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage, required:",
+        "content": "HTTP/1.1 201 Created\n{\n  \"ingredient_id\": 1\n}",
+        "type": "json"
+      }
+    ],
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n   \"error\": \"No Token Provided, you will need to Login!\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"message\": \"Already added id:14, use another ingredient.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"message\": \"No ingredient with that 🆔 14\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/auth/bloggers/blogger-router-doc.js",
+    "groupTitle": "Blogs_auth"
+  },
+  {
+    "type": "post",
     "url": "https://chef-portfolio1-bw.herokuapp.com/api/private/:id/instructions",
     "title": "Add a instruction for a recipe",
     "version": "0.1.0",
@@ -674,7 +742,7 @@ define({ "api": [
     "group": "Blogs_auth",
     "permission": [
       {
-        "name": "authenticate user first to get token"
+        "name": "authenticate user to get token"
       }
     ],
     "parameter": {
@@ -702,7 +770,7 @@ define({ "api": [
     "examples": [
       {
         "title": "Example usage, required:",
-        "content": "HTTP/1.1 201 Created\n{\n    \"changes\": {\n    \"instruction\": \"logic working id 13 instructions\"\n},\n  \"id\": \"13\"\n}",
+        "content": "HTTP/1.1 201 Created\n{\n    \"changes\": {\n    \"instruction\": \"Heat the water for chicken\"\n},\n  \"id\": \"13\"\n}",
         "type": "json"
       }
     ],
