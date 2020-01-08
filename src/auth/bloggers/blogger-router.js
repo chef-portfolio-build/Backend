@@ -163,7 +163,7 @@ console.log(id)
             })
         }
       }
-    })
+    }).catch(err => {console.log(err); res.status(500).json({error: err})})
 });
 
 // remove instruction
@@ -181,6 +181,7 @@ console.log(id)
 // so we can add it to recipe ingredient table
 // search db for the ingredient if its there get its id if not add and get its id
 // use the recipe id and ingredient id to add the ingredient to recipe_ingredient table
+
 router.get('/recipe/', jwt.checkToken(), (req,res) => {
   const name = req.body.search;
   console.log(name)
@@ -189,6 +190,39 @@ router.get('/recipe/', jwt.checkToken(), (req,res) => {
       console.log(names)
     });
 
+});
+
+// Add ingredients:
+router.post('/:id/ingredient', jwt.checkToken(), (req, res) => {
+  const { id } = req.params;
+  const {ingredient_id} = req.body;
+  // console.log(id)
+  Recipe.checkRecipeIngredient(ingredient_id)
+    .then(ids => {
+      console.log(ids)
+      if (ids) {
+        if (ids.ingredient_id === ingredient_id) {
+          res.status(400).json({message: `Already added id:${id}, use another ingredient.`})
+        } else {
+          res.status(201).json({message: `${ids}`})
+        }
+      } else {
+        Recipe.findIngredient(ingredient_id)
+          .then(ids => {
+            if (!ids) {
+              console.log("no ingredient")
+              res.status(404).json({message: 'Out of reach'})
+            } else {
+              console.log(ids)
+              Recipe.addRecipeIngredient(id, ingredient_id)
+                .then(i => {
+                console.log(i)
+                res.sendStatus(201)
+            }).catch(err => {console.log(err); res.sendStatus(500).json(err)})
+            }
+          })
+      }
+    }).catch(err => {console.log(err); res.status(500).json({error: err})})
 });
 //
 // -- get instructions
