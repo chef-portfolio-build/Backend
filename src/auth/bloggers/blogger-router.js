@@ -156,12 +156,12 @@ console.log(id)
       if (!ids) {
         res.status(404).json({ message: `No instruction with that id: ${id}`})
       } else {
-        // if (ids.user_id === userId) {
+        if (ids.user_id === userId) {
           Recipe.deleteInstruction(id)
             .then(d => {
               res.status(202).json({message: `Instruction id: ${id} deleted`})
             })
-        // }
+        }
       }
     })
 });

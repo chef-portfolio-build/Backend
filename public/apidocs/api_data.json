@@ -158,25 +158,25 @@
   },
   {
     "type": "put",
-    "url": "https://chef-portfolio1-bw.herokuapp.com/api/auth/:id",
-    "title": "Update user info",
+    "url": "https://chef-portfolio1-bw.herokuapp.com/api/auth/update",
+    "title": "Edit user info",
     "version": "0.1.0",
-    "name": "Write",
+    "name": "Update",
     "group": "Auth",
     "permission": [
       {
-        "name": "authenticate a blog auth user login"
+        "name": "authenticate chef first"
       }
     ],
     "parameter": {
       "fields": {
-        "Parameter": [
+        "Request header": [
           {
-            "group": "Parameter",
-            "type": "Number",
+            "group": "Request header",
+            "type": "String",
             "optional": false,
-            "field": "id",
-            "description": "<p>Users unique ID.</p>"
+            "field": "Authorization",
+            "description": "<p>Pass token to header</p>"
           }
         ],
         "Request body": [
@@ -201,22 +201,6 @@
             "field": "email",
             "description": "<p>The user email</p>"
           }
-        ],
-        "Request header": [
-          {
-            "group": "Request header",
-            "type": "String",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Pass it to headers</p>"
-          },
-          {
-            "group": "Request header",
-            "type": "String",
-            "optional": false,
-            "field": "token",
-            "description": "<p>Pass it to headers</p>"
-          }
         ]
       }
     },
@@ -229,7 +213,7 @@
         },
         {
           "title": "Success example",
-          "content": "HTTP/1.1 200 OK\n{\n   \"message\": \"Welcome back jonathan\",\n   \"user\": \"jonathan\",\n},\n\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxOSwidXNlcm5hbWUiOiJlcmFscCIsImlhdCI6MTU3NzQ4NTk0MSwiZXhwIjoxNTc4MDkwNzQxfQ.rHx8rKLqhZnzgBzDgPHXNH8z8Ger9xen95PPKEbsJ9I\"\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"message\": \"first_name,last_name updated successfully\"\n}",
           "type": "json"
         }
       ]
@@ -243,12 +227,7 @@
       "examples": [
         {
           "title": "List wrong user id",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \"message\": \"The server can not find requested resource. User id: 7\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "List User exist",
-          "content": "HTTP/1.1 401 Unauthorized\n{\n  \"message\": \"Wrong login credentials.\"\n}",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n  \"errors\": [\n  {\n    \"token\": \"Invalid token, you will need to log back in\"\n  }\n ]\n}",
           "type": "json"
         },
         {
