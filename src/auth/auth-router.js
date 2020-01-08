@@ -77,27 +77,27 @@ router.put('/update', jwt.checkToken(), (req, res) => {
 
 // Only for admins to delete a user
 // Delete user, provide a login token in the header.
-// router.delete('/:id', restricted, (req, res, next) => {
-//   const { id } = req.params;
-
-//   Users.findById(id)
-//     .then(user => {
-//       if (user) {
-//         Users.removeUser(id)
-//           .then(user => {
-//             console.log(user)
-//             res.status(201).json({ message: `User deleted..`})
-//           })
-//           .catch(err => {
-//             console.log(err);
-//             res.status(500).json({ error: `Error deleting user ${err} `})
-//       })
-//       } else {
-//         res.status(400).json({ message: 'No user in database..'})
-//       }
-//     })
-//     .catch(err => { res.status(500).json({ error: err })});
-// });
+router.delete('/remove', jwt.checkToken(), (req, res, next) => {
+  const id = req.user.subject;
+console.log(id)
+  Users.findById(id)
+    .then(user => {
+      if (user) {
+        Users.removeUser(id)
+          .then(user => {
+            console.log(user)
+            res.status(201).json({ message: `User with ${id} deleted..`})
+          })
+          .catch(err => {
+            console.log(err);
+            res.status(500).json({ error: `Error deleting user ${err} `})
+      })
+      } else {
+        res.status(400).json({ message: `No user with 🆔 ${id} in database..`})
+      }
+    })
+    .catch(err => { res.status(500).json({ error: err })});
+});
 
 module.exports = router;
 
