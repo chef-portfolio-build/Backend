@@ -57,7 +57,7 @@ router.get('/:id/ingredients', (req, res) => {
 
   Posts.listOfIngredients(id)
     .then(ingredient => {
-      console.log(ingredient)
+      // console.log(ingredient)
       if (ingredient.length) {
         res.status(200).json({ingredients: ingredient})
       } else {

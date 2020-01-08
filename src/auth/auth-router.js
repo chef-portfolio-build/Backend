@@ -49,23 +49,19 @@ router.post('/login', validateLogin, (req, res) => {
 });
 
 // Edit user information PUT
-router.put('/:id', jwt.checkToken(), (req, res) => {
+router.put('/update', jwt.checkToken(), (req, res) => {
   const userId = req.user.subject;
-  const userName = req.user.username;
-  const { id } = req.params;
   const changes = req.body;
 
-  Users.findById(id)
+  Users.findById(userId)
     .then(u => {
       if (u.id === userId) {
         if (changes.password) {
-          console.log(changes.password)
           const hash = bcrypt.hashSync(changes.password, HashFactor);
           changes.password = hash;
         }
-      Users.editById(id, changes)
+      Users.editById(userId, changes)
         .then(user => {
-          console.log(changes)
           res.status(200).json({ message: `${Object.keys(changes)} updated successfully` });
         })
         .catch(err => {
