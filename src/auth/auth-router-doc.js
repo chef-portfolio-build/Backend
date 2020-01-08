@@ -28,7 +28,7 @@
     *}
     * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/auth/register
     * 
-    * @apiErrorExample {json} List User exist
+    * @apiErrorExample {json} List error
     * HTTP/1.1 409 Conflict
     * {
     * "errors": [
@@ -76,7 +76,7 @@
     *}
     * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/auth/login
     * 
-    * @apiErrorExample {json} List User exist
+    * @apiErrorExample {json} List error
     * HTTP/1.1 401 Unauthorized
     *{
     *   "message": "Wrong login credentials."
@@ -94,14 +94,14 @@
     * @apiVersion 0.1.0
     * @apiName Update
     * @apiGroup Auth
-    * @apiPermission authenticate chef first
-    * 
+    * @apiPermission authenticate chef first, 
+    * pass data to any field that needs update
     * @apiParam (Request header) {String} Authorization Pass token to header
     *
     * @apiParam (Request body) {String} username The user name
     * @apiParam (Request body) {String} password The user password
     * @apiParam (Request body) {String} email The user email
-    * @apiSuccessExample {json} Example usage, pass any field that needs update: 
+    * @apiSuccessExample {json} Example usage 
     * {
     *   "username": "thunderkebap",
     *   "password": "nhhHUde^Fd7",
@@ -117,9 +117,9 @@
     * {
     *   "message": "first_name,last_name updated successfully"
     * }
-    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/auth/:id
     * 
-    * @apiErrorExample {json} List wrong user id
+    * 
+    * @apiErrorExample {json} List error
     * HTTP/1.1 401 Unauthorized
     * {
     *   "errors": [
@@ -133,3 +133,36 @@
     * @apiErrorExample {json} List error
     * HTTP/1.1 500 Internal Server Error
     **/
+
+// Delete chef account
+// **************************
+// ************************************    
+/**
+    * @api {put} https://chef-portfolio1-bw.herokuapp.com/api/auth/remove Delete user
+    * 
+    * @apiVersion 0.1.0
+    * @apiName Delete
+    * @apiGroup Auth
+    * @apiPermission authenticate chef first, 
+    * 
+    * @apiParam (Request header) {String} Authorization Pass token to header
+    * 
+    * @apiSuccessExample {json} Success example
+    * {
+    *    "message": "User with 🆔 deleted.."
+    * }
+    * 
+    * @apiErrorExample {json} List error
+    * HTTP/1.1 401 Unauthorized
+    * {
+    *   "error": "No Token Provided, you will need to Login"
+    * }
+    * 
+    * @apiErrorExample {json} List error
+    * HTTP/1.1 400 Bad Request
+    * {
+    *   "message": "No user with 🆔 14 in database.."
+    * }
+    * @apiErrorExample {json} List error
+    * HTTP/1.1 500 Internal Server Error
+*/
