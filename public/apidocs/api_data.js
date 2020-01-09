@@ -447,6 +447,11 @@ define({ "api": [
         },
         {
           "title": "List error",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"message\": \"Out of reach\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "List error",
           "content": "HTTP/1.1 500 Internal Server Error",
           "type": "json"
         }

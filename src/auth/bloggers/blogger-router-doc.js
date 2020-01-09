@@ -301,7 +301,7 @@
 */
 
 // **********************
-// // Add ingredients:
+// // Add ingredients to recipe:
 /**
   * @api {post} https://chef-portfolio1-bw.herokuapp.com/api/private/:id/ingredient Add an ingredient to recipe
   * 
@@ -337,6 +337,11 @@
   * HTTP/1.1 400 Bad Request
   * {
   *   "message": "No ingredient with that 🆔 14"
+  * }
+  * @apiErrorExample {json} List error
+  * HTTP/1.1 404 Not Found
+  * {
+  *   "message": "Out of reach"
   * }
   * 
   * @apiErrorExample {json} List error
