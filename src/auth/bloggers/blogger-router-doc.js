@@ -1,5 +1,5 @@
 /**
-    * @api {get} https://chef-portfolio1-bw.herokuapp.com/api/private/postsbyuserid Show chefs recipes only
+    * @api {get} https://chef-portfolio1-bw.herokuapp.com/api/private/recipesbychefid Show chefs recipes only
     * @apiVersion 0.1.0
     * @apiName Get
     * @apiGroup Blogs auth
@@ -32,7 +32,7 @@
     *   "user_id": 7
     * }
     *]
-    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/private/poatsbyuserid
+    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/private/recipesbychefid
     * 
     * @apiErrorExample {json} List error
     * HTTP/1.1 404 Not Found
@@ -56,9 +56,9 @@
 
     // POST add new recipes
 /**
-    * @api {post} https://chef-portfolio1-bw.herokuapp.com/api/private/posts Add new recipe
+    * @api {post} https://chef-portfolio1-bw.herokuapp.com/api/private/recipe Add new recipe
     * @apiVersion 0.1.0
-    * @apiName Post
+    * @apiName Add
     * @apiGroup Blogs auth
     * @apiPermission authenticate a blog auth user login
     *
@@ -93,7 +93,7 @@
     *     }
     *   ]
     *}
-    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/private/posts
+    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/private/recipe
     * 
     * @apiErrorExample {json} Unauthorized error
     * HTTP/1.1 401 Unauthorized
@@ -110,9 +110,9 @@
 
     // Edit chefs recipes 
     /**
-    * @api {put} https://chef-portfolio1-bw.herokuapp.com/api/private/posts/:id Edit a recipe
+    * @api {put} https://chef-portfolio1-bw.herokuapp.com/api/private/recipe/:id Edit a recipe
     * @apiVersion 0.1.0
-    * @apiName Put
+    * @apiName Edit
     * @apiGroup Blogs auth
     * @apiPermission authenticate user first to get token
     *
@@ -141,12 +141,18 @@
     *   "image": "http://lorempixel.com/640/480/food"
     * }
     *}
-    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/private/posts/:id
+    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/private/recipe/:id
     * 
     * @apiErrorExample {json} List Error
     * HTTP/1.1 404 Not Found
     * {
-    *   "message": "Hello chef username, you have no posts yet, please start posting about your delicious recipes"
+    *   "message": "No recipe with given id: 12200"
+    * }
+    * 
+    * @apiErrorExample {json} List Error
+    * HTTP/1.1 404 Not Found
+    * {
+    *   "message": "Hello chef username, not your post or you have no posts yet, please start posting about your delicious recipes"
     * }
     * 
     * @apiErrorExample {json} Unauthorized error
@@ -163,7 +169,7 @@
     // **********************************************************
     //Remove a recipe
         /**
-    * @api {delete} https://chef-portfolio1-bw.herokuapp.com/api/private/posts/:id Delete a recipe
+    * @api {delete} https://chef-portfolio1-bw.herokuapp.com/api/private/recipe/:id Delete a recipe
     * @apiVersion 0.1.0
     * @apiName Delete
     * @apiGroup Blogs auth
@@ -175,11 +181,11 @@
     * message "Recipe deleted successfully"
     * 
     * @apiSuccessExample {json} Success example
-    * HTTP/1.1 200 OK
+    * HTTP/1.1 204 No Content
     *{
     *  message: 'Recipe deleted successfully.'
     *}
-    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/private/posts/:id
+    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/private/recipe/:id
     * 
     * @apiErrorExample {json} List Error
     * HTTP/1.1 404 Not Found
@@ -196,3 +202,149 @@
     * @apiErrorExample {json} List error
     * HTTP/1.1 500 Internal Server Error
     **/
+
+// ****************************************
+// ****************************************
+// Add instructions to recipe/:id chef auth
+/**
+    * @api {post} https://chef-portfolio1-bw.herokuapp.com/api/private/:id/instructions Add a instruction for a recipe
+    * @apiVersion 0.1.0
+    * @apiName Add instruction
+    * @apiGroup Blogs auth
+    * @apiPermission authenticate user first to get token
+    * 
+    * @apiParam (Request header) {String} Authorization token
+    * 
+    * @apiParam (Request body) {Integer} step_number instruction step number
+    * @apiParam (Request body) {String} instruction Instruction description
+    * @apiParam (Request body) {Integer} recipe_id 🆔 of the recipe
+    * @apiExample {json} Example usage, required:
+    * 
+    * {
+	  *   "step_number": 2,
+	  *   "instruction": "Meanwhile, combine remaining teaspoon cumin, 2 teaspoons sumac, remaining tablespoon pepper flakes,....",
+	  *   "recipe_id": 13
+    * }
+    * 
+    *  @apiSuccess
+    * message 🆔 added successfully
+    * 
+    * @apiSuccessExample {json} Success example
+    * HTTP/1.1 201 Created
+    *[
+    * {
+    *   id": 21,
+    *   "step_number": 2,
+    *   "instruction": "Meanwhile, combine remaining teaspoon cumin, 2 teaspoons sumac, remaining tablespoon pepper flakes...",
+    *   "recipe_id": 13
+    *   }
+    * ]
+    * 
+    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/private/:id/instructions
+    * 
+    * @apiErrorExample {json} List Error
+    * HTTP/1.1 404 Not Found
+    * {
+    *   "message": "No recipe with that id: 14"
+    * }
+    * 
+    * @apiErrorExample {json} Unauthorized error
+    * HTTP/1.1 401 Unauthorized
+    * {
+    *   "message": "Invalid Token, you will need to Log back in"
+    * }
+    * 
+    * @apiErrorExample {json} List error
+    * HTTP/1.1 500 Internal Server Error
+    * 
+ */
+
+ // ****************************************
+// ****************************************
+// Add instructions to recipe/:id chef auth
+/**
+    * @api {put} https://chef-portfolio1-bw.herokuapp.com/api/private/:id/instructions Edit a instruction
+    * 
+    * @apiVersion 0.1.0
+    * @apiName Edit instructions
+    * @apiGroup Blogs auth
+    * @apiPermission authenticate user to get token
+    * 
+    * @apiParam (Request header) {String} Authorization token
+    * 
+    * @apiParam (Request body) {String} instruction Instruction description to change
+    * 
+    * @apiExample {json} Example usage, required:
+    * HTTP/1.1 201 Created
+    * {
+    *     "changes": {
+    *     "instruction": "Heat the water for chicken"
+    * },
+    *   "id": "13"
+    * }
+    * 
+    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/private/:id/instructions
+    * 
+    * @apiErrorExample {json} List Error
+    * HTTP/1.1 404 Not Found
+    * {
+    *   "message": "No instructions with that id: 🆔"
+    * }
+    * @apiErrorExample {json} Unauthorized error
+    * HTTP/1.1 401 Unauthorized
+    * {
+    *   "message": "Invalid Token, you will need to Log back in"
+    * }
+    * 
+    * @apiErrorExample {json} List error
+    * HTTP/1.1 500 Internal Server Error
+*/
+
+// **********************
+// // Add ingredients to recipe:
+/**
+  * @api {post} https://chef-portfolio1-bw.herokuapp.com/api/private/:id/ingredient Add an ingredient to recipe
+  * 
+  * @apiVersion 0.1.0
+  * @apiName Add ingredient
+  * @apiGroup Blogs auth
+  * @apiPermission authenticate user to get token
+  * 
+  * @apiParam (Request header) {String} Authorization token
+  * 
+  * @apiParam (Request body) {String} ingredient_id add ingredient 🆔
+  * @apiExample {json} Example usage, required:
+  * HTTP/1.1 201 Created
+  * {
+	*   "ingredient_id": 1
+  * }
+  * 
+  * 
+  * 
+  * @apiErrorExample {json} List error
+  * HTTP/1.1 401 Unauthorized
+  * {
+  *    "error": "No Token Provided, you will need to Login!"
+  * }
+  * 
+  * @apiErrorExample {json} List error
+  * HTTP/1.1 400 Bad Request
+  * {
+  *   "message": "Already added id:14, use another ingredient."
+  * }
+  * 
+  * @apiErrorExample {json} List error
+  * HTTP/1.1 400 Bad Request
+  * {
+  *   "message": "No ingredient with that 🆔 14"
+  * }
+  * @apiErrorExample {json} List error
+  * HTTP/1.1 404 Not Found
+  * {
+  *   "message": "Out of reach"
+  * }
+  * 
+  * @apiErrorExample {json} List error
+    * HTTP/1.1 500 Internal Server Error
+  * 
+**/

@@ -9,7 +9,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('./middleware/jwtAccess');
 const Users = require('./auth-model');
 
-
 // POST register new chef
 router.post('/register', validateNewUser, (req, res) => {
     const user = req.body;
@@ -27,7 +26,6 @@ router.post('/register', validateNewUser, (req, res) => {
         res.status(500).json(err);
       })
 });
-
 
 // login user
 router.post('/login', validateLogin, (req, res) => {
@@ -50,25 +48,20 @@ router.post('/login', validateLogin, (req, res) => {
     });
 });
 
-
 // Edit user information PUT
-router.put('/:id', jwt.checkToken(), (req, res) => {
+router.put('/update', jwt.checkToken(), (req, res) => {
   const userId = req.user.subject;
-  const userName = req.user.username;
-  const { id } = req.params;
   const changes = req.body;
 
-  Users.findById(id)
+  Users.findById(userId)
     .then(u => {
       if (u.id === userId) {
         if (changes.password) {
-          console.log(changes.password)
           const hash = bcrypt.hashSync(changes.password, HashFactor);
           changes.password = hash;
         }
-      Users.editById(id, changes)
+      Users.editById(userId, changes)
         .then(user => {
-          console.log(changes)
           res.status(200).json({ message: `${Object.keys(changes)} updated successfully` });
         })
         .catch(err => {
@@ -84,23 +77,23 @@ router.put('/:id', jwt.checkToken(), (req, res) => {
 
 // Only for admins to delete a user
 // Delete user, provide a login token in the header.
-router.delete('/:id', restricted, (req, res, next) => {
-  const { id } = req.params;
-
+router.delete('/remove', jwt.checkToken(), (req, res, next) => {
+  const id = req.user.subject;
+console.log(id)
   Users.findById(id)
     .then(user => {
       if (user) {
         Users.removeUser(id)
           .then(user => {
             console.log(user)
-            res.status(201).json({ message: `User deleted..`})
+            res.status(201).json({ message: `User with ${id} deleted..`})
           })
           .catch(err => {
             console.log(err);
             res.status(500).json({ error: `Error deleting user ${err} `})
       })
       } else {
-        res.status(400).json({ message: 'No user in database..'})
+        res.status(400).json({ message: `No user with 🆔 ${id} in database..`})
       }
     })
     .catch(err => { res.status(500).json({ error: err })});

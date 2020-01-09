@@ -28,7 +28,7 @@
     *}
     * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/auth/register
     * 
-    * @apiErrorExample {json} List User exist
+    * @apiErrorExample {json} List error
     * HTTP/1.1 409 Conflict
     * {
     * "errors": [
@@ -76,7 +76,7 @@
     *}
     * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/auth/login
     * 
-    * @apiErrorExample {json} List User exist
+    * @apiErrorExample {json} List error
     * HTTP/1.1 401 Unauthorized
     *{
     *   "message": "Wrong login credentials."
@@ -90,18 +90,18 @@
 
     // Edit user information PUT
 /**
-    * @api {put} https://chef-portfolio1-bw.herokuapp.com/api/auth/:id Update user info
+    * @api {put} https://chef-portfolio1-bw.herokuapp.com/api/auth/update Edit user info
     * @apiVersion 0.1.0
-    * @apiName Write
+    * @apiName Update
     * @apiGroup Auth
-    * @apiPermission authenticate a blog auth user login
-    * 
-    * @apiParam {Number} id Users unique ID.
+    * @apiPermission authenticate chef first, 
+    * pass data to any field that needs update
+    * @apiParam (Request header) {String} Authorization Pass token to header
     *
     * @apiParam (Request body) {String} username The user name
     * @apiParam (Request body) {String} password The user password
     * @apiParam (Request body) {String} email The user email
-    * @apiSuccessExample {json} Example usage, pass any field that needs update: 
+    * @apiSuccessExample {json} Example usage 
     * {
     *   "username": "thunderkebap",
     *   "password": "nhhHUde^Fd7",
@@ -110,31 +110,59 @@
 	  *   "cuisine_style": "Turkish"
     * }
     * 
-    * @apiParam (Request header) {String} Authorization Pass it to headers
-    * @apiParam (Request header) {String} token Pass it to headers
     * 
     * 
     * @apiSuccessExample {json} Success example
     * HTTP/1.1 200 OK
-    *{
-    *    "message": "Welcome back jonathan",
-    *    "user": "jonathan",
-    *},
-    * "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxOSwidXNlcm5hbWUiOiJlcmFscCIsImlhdCI6MTU3NzQ4NTk0MSwiZXhwIjoxNTc4MDkwNzQxfQ.rHx8rKLqhZnzgBzDgPHXNH8z8Ger9xen95PPKEbsJ9I"
-    *}
-    * @apiSampleRequest https://chef-portfolio1-bw.herokuapp.com/api/auth/:id
-    * 
-    * @apiErrorExample {json} List wrong user id
-    * HTTP/1.1 404 Not Found
     * {
-    *   "message": "The server can not find requested resource. User id: 7"
+    *   "message": "first_name,last_name updated successfully"
     * }
     * 
-    * @apiErrorExample {json} List User exist
+    * 
+    * @apiErrorExample {json} List error
     * HTTP/1.1 401 Unauthorized
-    *{
-    *   "message": "Wrong login credentials."
-    *}
+    * {
+    *   "errors": [
+    *   {
+    *     "token": "Invalid token, you will need to log back in"
+    *   }
+    *  ]
+    * }
+    * 
+    * 
     * @apiErrorExample {json} List error
     * HTTP/1.1 500 Internal Server Error
     **/
+
+// Delete chef account
+// **************************
+// ************************************    
+/**
+    * @api {put} https://chef-portfolio1-bw.herokuapp.com/api/auth/remove Delete user
+    * 
+    * @apiVersion 0.1.0
+    * @apiName Delete
+    * @apiGroup Auth
+    * @apiPermission authenticate chef first, 
+    * 
+    * @apiParam (Request header) {String} Authorization Pass token to header
+    * 
+    * @apiSuccessExample {json} Success example
+    * {
+    *    "message": "User with 🆔 deleted.."
+    * }
+    * 
+    * @apiErrorExample {json} List error
+    * HTTP/1.1 401 Unauthorized
+    * {
+    *   "error": "No Token Provided, you will need to Login"
+    * }
+    * 
+    * @apiErrorExample {json} List error
+    * HTTP/1.1 400 Bad Request
+    * {
+    *   "message": "No user with 🆔 14 in database.."
+    * }
+    * @apiErrorExample {json} List error
+    * HTTP/1.1 500 Internal Server Error
+*/
