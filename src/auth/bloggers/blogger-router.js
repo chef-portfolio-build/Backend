@@ -152,7 +152,7 @@ console.log(id)
   // find the recipe first
   Recipe.findInstructions(id)
     .then(ids => {
-      console.log(ids)
+      // console.log(ids)
       if (!ids) {
         res.status(404).json({ message: `No instruction with that id: ${id}`})
       } else {
@@ -196,7 +196,7 @@ router.get('/recipe/', jwt.checkToken(), (req,res) => {
 router.post('/:id/ingredient', jwt.checkToken(), (req, res) => {
   const { id } = req.params;
   const {ingredient_id} = req.body;
-  // console.log(id)
+  
   Recipe.checkRecipeIngredient(ingredient_id)
     .then(ids => {
       console.log(ids)
@@ -210,13 +210,13 @@ router.post('/:id/ingredient', jwt.checkToken(), (req, res) => {
         Recipe.findIngredient(ingredient_id)
           .then(ids => {
             if (!ids) {
-              console.log("no ingredient")
+              // console.log("no ingredient")
               res.status(404).json({message: 'Out of reach'})
             } else {
               console.log(ids)
               Recipe.addRecipeIngredient(id, ingredient_id)
                 .then(i => {
-                console.log(i)
+                // console.log(i)
                 res.sendStatus(201)
             }).catch(err => {console.log(err); res.sendStatus(500).json(err)})
             }

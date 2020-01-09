@@ -144,13 +144,23 @@ function checkRecipeIngredient(ingredient_id) {
     .where('ingredient_id', ingredient_id)
     .first()
 }
+// function findIngredient(id) {
+//   return db('ingredient')
+//     // .havingIn('id', id)
+//     .where('id', id)
+//     .first()
+//     .then(ids => {
+//       console.log(ids)
+//       return db('recipe_ingredients')
+//         .where('ingredient_id', ids.id)
+//         .first()
+//     })
+//     .catch(e => console.log(e))
+// }
 function findIngredient(id) {
   return db('ingredient')
     .where('id', id)
-    .first()
-    // .then(ids => {
-
-    // })
+    .first();
 }
 // UPDATE recipe
 // SET instructions = "Hello world, this is how you make cheese burger"
