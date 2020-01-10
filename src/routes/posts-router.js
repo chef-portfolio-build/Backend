@@ -38,7 +38,6 @@ router.get('/:id', (req, res) => {
   
   Posts.getUserWithRecipeAndBio(id)
     .then(bio => {
-      console.log(bio)
       if (bio.length) {
         res.status(200).json({recipe: bio})
       } else {

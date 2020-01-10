@@ -9,7 +9,6 @@ describe('All recipe blogs operations', () => {
     expect(response.status).toEqual(200)
   });
 
-
   // only user 🆔 1 is in the database
   it('should return 200 /:id/chef', async () => {
     const response = await request(server).get('/api/1/chef');
@@ -21,6 +20,12 @@ describe('All recipe blogs operations', () => {
     const response = await request(server).get('/api/1/chef');
 
     expect(response.type).toMatch(/json/i);
+  });
+
+  it('should show single recipe by 🆔', async () => {
+    const response = await request(server).get('/api/25');
+    
+    expect(response.type).toMatch(/json/i)
   });
 });
 
