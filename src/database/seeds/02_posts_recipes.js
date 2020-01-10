@@ -15,7 +15,7 @@ exports.seed = function(knex) {
           meal_type: 'Dinner',
           user_id: 10,
           created_at: '2019-12-29 01:32:21',
-          instructions: 'Consequuntur eum eos repudiandae sed. Quaerat libero assumenda. Aspernatur distinctio suscipit voluptas rerum deleniti ratione et. Ut quae quia incidunt quos qui impedit facere. Praesentium voluptatum aut magnam rerum velit sit sunt. Cumque ratione repellendus quia quia voluptate nulla a.'
+          instructions: 'In a small mixing bowl thoroughly combine softened butter, cayenne pepper, and paprika. In a large deep-sided skillet over medium-high heat, melt the cayenne butter and add the mushrooms, scallions and lobster meat. Saute until mushroom are golden, about 5 minutes, and season with salt and pepper, to taste. Carefully add the whiskey off the heat and cook until almost completely evaporated. Add the cream and reduce until thickened. Serve in large bowls over hot rice.'
         },
         {
           food_name: 'Butter bean and peanut salad',
@@ -24,7 +24,7 @@ exports.seed = function(knex) {
           meal_type: 'Salad',
           user_id: 9,
           created_at: '2019-12-29 01:32:21',
-          instructions: 'Consequuntur eum eos repudiandae sed. Quaerat libero assumenda. Aspernatur distinctio suscipit voluptas rerum deleniti ratione et. Ut quae quia incidunt quos qui impedit facere. Praesentium voluptatum aut magnam rerum velit sit sunt. Cumque ratione repellendus quia quia voluptate nulla a.'
+          instructions: 'In a large bowl, combine the beans, peppers, onion and garlic. In a small bowl, combine the remaining ingredients. Pour over bean mixture and toss to coat. Chill until serving. Nutrition Facts 3/4 cup: 147 calories, 7g fat (1g saturated fat), 0 cholesterol, 360mg sodium, 19g carbohydrate (3g sugars, 5g fiber), 5g protein. Diabetic Exchanges: 1 starch, 1 vegetable, 1 fat'
         },
         {
           food_name: 'Pecan and date biscuits',
@@ -33,7 +33,7 @@ exports.seed = function(knex) {
           meal_type: 'Dessert',
           user_id: 2,
           created_at: '2019-12-29 01:32:21',
-          instructions: 'Consequuntur eum eos repudiandae sed. Quaerat libero assumenda. Aspernatur distinctio suscipit voluptas rerum deleniti ratione et. Ut quae quia incidunt quos qui impedit facere. Praesentium voluptatum aut magnam rerum velit sit sunt. Cumque ratione repellendus quia quia voluptate nulla a.'
+          instructions: 'These cookies turned out to be extremely good. The spices offer a wonderful combination of flavors. The pecans offer crunch, while the dates add chewiness. Quinn has proclaimed these his favorite cookie. I’m a little partial to them myself. In fact, we liked them so much that we kept most of them for ourselves.'
         },
         {
           food_name: 'Venison and bean casserole',
@@ -51,7 +51,7 @@ exports.seed = function(knex) {
           meal_type: 'Dessert',
           user_id: 3,
           created_at: '2019-12-29 01:32:21',
-          instructions: 'Consequuntur eum eos repudiandae sed. Quaerat libero assumenda. Aspernatur distinctio suscipit voluptas rerum deleniti ratione et. Ut quae quia incidunt quos qui impedit facere. Praesentium voluptatum aut magnam rerum velit sit sunt. Cumque ratione repellendus quia quia voluptate nulla a.'
+          instructions: 'In a large skillet, cook venison and onion over medium heat until meat is no longer pink; drain. Stir in remaining ingredients. Transfer to a 2-qt. baking dish. Cover and bake at 350° for 35-40 minutes or until heated through..'
         },
         {
           food_name: 'Sultana and gruyere salad',

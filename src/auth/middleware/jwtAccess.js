@@ -31,8 +31,6 @@ function checkToken() {
       } else {
         req.user = decoded;
 
-        // console.log(decoded.username)
-        // console.log(decoded.subject)
         next();
       }
     });

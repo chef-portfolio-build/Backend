@@ -3,14 +3,23 @@ require('dotenv').config();
 const HashFactor = parseInt(process.env.HASH) || 8;
 const validateNewUser = require('./validNewUser');
 const validateLogin = require('./validLoginUser');
-const restricted = require('../auth/middleware/auth-middleware');
+const { check, validationResult } = require('express-validator');
 
 const bcrypt = require('bcryptjs');
 const jwt = require('./middleware/jwtAccess');
 const Users = require('./auth-model');
 
 // POST register new chef
-router.post('/register', validateNewUser, (req, res) => {
+router.post('/register', [
+  check('username').isLength({ min: 5 }),
+  check('password').isLength({ min: 5 }),
+  check('email').isEmail(),
+], (req, res) => {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+
     const user = req.body;
     const hash = bcrypt.hashSync(user.password, HashFactor);
     user.password = hash;
