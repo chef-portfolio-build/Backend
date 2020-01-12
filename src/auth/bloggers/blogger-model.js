@@ -105,21 +105,7 @@ function updateInstructions(id, changes) {
     .update(changes)
 
 }
-// knex('recipe').where('id', 13).select('id').first()
-//     .then(recipe => {
-//          return knex('recipe').where({recipe_id: recipe.id, step_number: 2}).update('instruction', 'Testing edit')     
-//      })
-// function updateInstruction(step_number, changes, recipe_id) {
-//   return db('instructions')
-//     .where('recipe_id', recipe_id)
-//     .select('id').first()
-//     .then(recipe => {
-//       console.log('id::: ',recipe) 
-//          return db('instructions')
-//          .where({recipe_id: recipe.id, step_number: step_number})
-//          .update('instruction', changes)     
-//      })
-// }
+
 
 function deleteInstruction(id) {
   return db('instructions')
@@ -144,19 +130,7 @@ function checkRecipeIngredient(ingredient_id) {
     .where('ingredient_id', ingredient_id)
     .first()
 }
-// function findIngredient(id) {
-//   return db('ingredient')
-//     // .havingIn('id', id)
-//     .where('id', id)
-//     .first()
-//     .then(ids => {
-//       console.log(ids)
-//       return db('recipe_ingredients')
-//         .where('ingredient_id', ids.id)
-//         .first()
-//     })
-//     .catch(e => console.log(e))
-// }
+
 function findIngredient(id) {
   return db('ingredient')
     .where('id', id)
@@ -185,7 +159,6 @@ function findById(id) {
     .first();
 }
 
-// g
 
 function findByName(name) {
   return db('recipe')

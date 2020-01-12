@@ -1,4 +1,3 @@
-// const { check, validationResult } = require('express-validator');
 const Users = require('./auth-model');
 
 
@@ -31,7 +30,7 @@ module.exports = async (req, res, next) => {
 
         //Validate Email Pattern
         if (x === "email") {
-          //Cats got your keyboard... When in doubt, Reg it out
+         
           !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user[x]) &&
             errors.push({ error: "Unexpected Email Address" });
         }
