@@ -73,7 +73,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/auth/auth-router-doc.js",
+    "filename": "src/docs/auth-router-doc.js",
     "groupTitle": "Auth"
   },
   {
@@ -129,7 +129,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/auth/auth-router-doc.js",
+    "filename": "src/docs/auth-router-doc.js",
     "groupTitle": "Auth"
   },
   {
@@ -209,7 +209,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/auth/auth-router-doc.js",
+    "filename": "src/docs/auth-router-doc.js",
     "groupTitle": "Auth"
   },
   {
@@ -288,7 +288,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/auth/auth-router-doc.js",
+    "filename": "src/docs/auth-router-doc.js",
     "groupTitle": "Auth"
   },
   {
@@ -384,7 +384,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/auth/bloggers/blogger-router-doc.js",
+    "filename": "src/docs/blogger-router-doc.js",
     "groupTitle": "Blogs_auth"
   },
   {
@@ -457,7 +457,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/auth/bloggers/blogger-router-doc.js",
+    "filename": "src/docs/blogger-router-doc.js",
     "groupTitle": "Blogs_auth"
   },
   {
@@ -558,7 +558,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/auth/bloggers/blogger-router-doc.js",
+    "filename": "src/docs/blogger-router-doc.js",
     "groupTitle": "Blogs_auth"
   },
   {
@@ -629,7 +629,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/auth/bloggers/blogger-router-doc.js",
+    "filename": "src/docs/blogger-router-doc.js",
     "groupTitle": "Blogs_auth"
   },
   {
@@ -735,7 +735,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/auth/bloggers/blogger-router-doc.js",
+    "filename": "src/docs/blogger-router-doc.js",
     "groupTitle": "Blogs_auth"
   },
   {
@@ -803,7 +803,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/auth/bloggers/blogger-router-doc.js",
+    "filename": "src/docs/blogger-router-doc.js",
     "groupTitle": "Blogs_auth"
   },
   {
@@ -874,7 +874,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/auth/bloggers/blogger-router-doc.js",
+    "filename": "src/docs/blogger-router-doc.js",
     "groupTitle": "Blogs_auth"
   },
   {
@@ -956,7 +956,7 @@ define({ "api": [
         "url": "https://chef-portfolio1-bw.herokuapp.com/api/:id/ingredients"
       }
     ],
-    "filename": "src/routes/posts-router-doc.js",
+    "filename": "src/docs/posts-router-doc.js",
     "groupTitle": "Recipe_posts"
   },
   {
@@ -1045,7 +1045,7 @@ define({ "api": [
         "url": "https://chef-portfolio1-bw.herokuapp.com/api/:id/instructions"
       }
     ],
-    "filename": "src/routes/posts-router-doc.js",
+    "filename": "src/docs/posts-router-doc.js",
     "groupTitle": "Recipe_posts"
   },
   {
@@ -1241,7 +1241,7 @@ define({ "api": [
         "url": "https://chef-portfolio1-bw.herokuapp.com/api/:id"
       }
     ],
-    "filename": "src/routes/posts-router-doc.js",
+    "filename": "src/docs/posts-router-doc.js",
     "groupTitle": "Recipe_posts"
   },
   {
@@ -1360,7 +1360,7 @@ define({ "api": [
         "url": "https://chef-portfolio1-bw.herokuapp.com/api/"
       }
     ],
-    "filename": "src/routes/posts-router-doc.js",
+    "filename": "src/docs/posts-router-doc.js",
     "groupTitle": "Recipe_posts"
   },
   {
@@ -1477,7 +1477,7 @@ define({ "api": [
         "url": "https://chef-portfolio1-bw.herokuapp.com/api/:id/chef"
       }
     ],
-    "filename": "src/routes/posts-router-doc.js",
+    "filename": "src/docs/posts-router-doc.js",
     "groupTitle": "Recipe_posts"
   }
 ] });

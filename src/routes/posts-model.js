@@ -15,13 +15,6 @@ function find() {
   return db('recipe');
 }
 
-// find chef by 🆔
-// function findChef(chef_id) {
-//   return db('chef')
-//     .select('id')
-//     .where({ chef_id })
-//     .first();
-// }
 // find recipe by id
 function findById(id) {
   return db('recipe')

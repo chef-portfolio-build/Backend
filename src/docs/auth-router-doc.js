@@ -1,3 +1,6 @@
+
+// npx apidoc -i src/ -o public/apidocs
+
 // POST register new chef
 /**
     * @api {post} https://chef-portfolio1-bw.herokuapp.com/api/auth/register Register new user

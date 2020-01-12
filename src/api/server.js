@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
-// const expressValidator = require('express-validator');
 
 const posts = require('../routes/posts-router.js');
 const authRouter = require('../auth/auth-router');
@@ -14,11 +13,7 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
-// server.use(expressValidator())
-
 server.use(express.static('public'));
-// npx apidoc -i src/ -o public/apidocs
-
 
 server.use('/api/', posts);
 

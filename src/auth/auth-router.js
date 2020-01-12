@@ -26,7 +26,7 @@ router.post('/register', [
   
     Users.addUser(user)
       .then(newUser => {
-        console.log(newUser);
+        // console.log(newUser);
         const token = jwt.generateToken(newUser);
         res.status(201).json({ user: newUser, token});
       })
@@ -35,7 +35,7 @@ router.post('/register', [
         res.status(500).json(err);
       })
 });
-
+// validateLogin
 // login user
 router.post('/login', validateLogin, (req, res) => {
   const { username, password } = req.body;
@@ -107,6 +107,7 @@ console.log(id)
     })
     .catch(err => { res.status(500).json({ error: err })});
 });
+
 
 module.exports = router;
 
