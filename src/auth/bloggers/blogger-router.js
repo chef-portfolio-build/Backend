@@ -224,6 +224,12 @@ router.post('/:id/ingredient', jwt.checkToken(), (req, res) => {
       }
     }).catch(err => {console.log(err); res.status(500).json({error: err})})
 });
+
+
+
+module.exports = router;
+
+
 //
 // -- get instructions
 // SELECT r.id, r.food_name, i.step_number, i.instruction FROM recipe as r
@@ -268,10 +274,6 @@ router.post('/:id/ingredient', jwt.checkToken(), (req, res) => {
 
 // - a **recipe** could have more than one **ingredient** and the same **ingredient** can be used in multiple recipes. Examples are _"cup of corn flour"_ or _"gram of butter"_.
 // - when saving the ingredients for a **recipe** capture the quantity required for that **ingredient** as a floating number.
-// - have a way to save step by step instructions for preparing a recipe.
-
-module.exports = router;
-
 
   // Recipe.findChefById(userId)
   //   .then(ids => {
