@@ -185,7 +185,7 @@
       "examples": [
         {
           "title": "Success example",
-          "content": "HTTP/1.1 200 OK\n{\n   \"message\": \"Welcome back jonathan\",\n   \"user\": \"jonathan\",\n},\n\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxOSwidXNlcm5hbWUiOiJlcmFscCIsImlhdCI6MTU3NzQ4NTk0MSwiZXhwIjoxNTc4MDkwNzQxfQ.rHx8rKLqhZnzgBzDgPHXNH8z8Ger9xen95PPKEbsJ9I\"\n}",
+          "content": "HTTP/1.1 200 OK\n{\n   \"message\": \"Welcome back jonathan\",\n   \"user\": \"jonathan\",\n   \"id\": 🆔\n},\n\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxOSwidXNlcm5hbWUiOiJlcmFscCIsImlhdCI6MTU3NzQ4NTk0MSwiZXhwIjoxNTc4MDkwNzQxfQ.rHx8rKLqhZnzgBzDgPHXNH8z8Ger9xen95PPKEbsJ9I\"\n}",
           "type": "json"
         }
       ]
