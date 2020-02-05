@@ -3,32 +3,22 @@ require('dotenv').config();
 const HashFactor = parseInt(process.env.HASH) || 8;
 const validateNewUser = require('./validNewUser');
 const validateLogin = require('./validLoginUser');
-const { check, validationResult } = require('express-validator');
 
 const bcrypt = require('bcryptjs');
 const jwt = require('./middleware/jwtAccess');
 const Users = require('./auth-model');
 
 // POST register new chef
-router.post('/register', [
-  check('username').isLength({ min: 5 }),
-  check('password').isLength({ min: 5 }),
-  check('email').isEmail(),
-], (req, res) => {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
-    }
-
+router.post('/register', validateNewUser, (req, res) => {
     const user = req.body;
     const hash = bcrypt.hashSync(user.password, HashFactor);
     user.password = hash;
   
     Users.addUser(user)
       .then(newUser => {
-        // console.log(newUser);
+        console.log(newUser);
         const token = jwt.generateToken(newUser);
-        res.status(201).json({ user: newUser, token});
+        res.status(201).json({ message: `Welcome ${newUser.username}, thanks for joining Chef Portfolio.`, user: newUser, token});
       })
       .catch(err => {
         console.log(err);
