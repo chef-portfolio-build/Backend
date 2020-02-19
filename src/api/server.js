@@ -21,7 +21,7 @@ server.use('/api/auth', authRouter);
 server.use('/api/private', authenticate, bloggerRouter);
 
 server.get('/', (req, res) => {
-  res.send("<h2>Let's cook something! 🌽🥕</h2>");
+  res.send("<h2>Let's cook something! 🌽🥕 😄</h2>");
 });
 
 
