@@ -1,6 +1,5 @@
 const Users = require('./auth-model');
 
-
 module.exports = async (req, res, next) => {
   const errors = [];
 
