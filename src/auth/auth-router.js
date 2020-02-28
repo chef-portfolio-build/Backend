@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('./middleware/jwtAccess');
 const Users = require('./auth-model');
 
-// POST register new chef
+// POST /api/auth/register register new chef - FUNCTIONAL
 router.post('/register', validateNewUser, (req, res) => {
     const user = req.body;
     const hash = bcrypt.hashSync(user.password, HashFactor);
@@ -16,7 +16,7 @@ router.post('/register', validateNewUser, (req, res) => {
   
     Users.addUser(user)
       .then(newUser => {
-        console.log(newUser);
+        // console.log(newUser);
         const token = jwt.generateToken(newUser);
         res.status(201).json({ message: `Welcome ${newUser.username}, thanks for joining Chef Portfolio.`, user: newUser, token});
       })
@@ -26,7 +26,7 @@ router.post('/register', validateNewUser, (req, res) => {
       })
 });
 // validateLogin
-// login user
+// POST /api/auth/login login user - FUNCTIONAL
 router.post('/login', validateLogin, (req, res) => {
   const { username, password } = req.body;
 
@@ -47,7 +47,7 @@ router.post('/login', validateLogin, (req, res) => {
     });
 });
 
-// Edit user information PUT
+// PUT /api/auth/update Edit user information - FUNCTIONAL
 router.put('/update', jwt.checkToken(), (req, res) => {
   const userId = req.user.subject;
   const changes = req.body;
