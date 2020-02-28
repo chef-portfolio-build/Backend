@@ -184,7 +184,7 @@ console.log(id)
 
 router.get('/recipe/', jwt.checkToken(), (req,res) => {
   const name = req.body.search;
-  console.log(name)
+
   Recipe.findByName(name)
     .then(names => {
       console.log(names)
@@ -199,7 +199,6 @@ router.post('/:id/ingredient', jwt.checkToken(), (req, res) => {
   
   Recipe.checkRecipeIngredient(ingredient_id)
     .then(ids => {
-      console.log(ids)
       if (ids) {
         if (ids.ingredient_id === ingredient_id) {
           res.status(400).json({message: `Already added id:${id}, use another ingredient.`})

@@ -32,5 +32,6 @@ module.exports = async (req, res, next) => {
   }
 
   validateLogin(user);
+  
   errors.length < 1 ? next() : res.status(401).json({ errors: errors });
 };
