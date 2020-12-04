@@ -1,12 +1,17 @@
 // connection to the DB
 const db = require('../database/dbConfig.js');
+// const prepTestDB = require('../__test__/prepTestDB.js');
+
+// beforeEach(() => db('chef').truncate())
+// beforeEach(() => db.seed.run());
+// beforeEach(prepTestDB);
 
 //the data access file we're testing
 const Users = require('./auth-model');
 
 describe('Users model access', () => {
   describe('insert() new user', () => {
-     // this function executes and clears out the table before each test
+    //  this function executes and clears out the table before each test
     beforeEach(async () => {
       await db('chef').truncate();
     })

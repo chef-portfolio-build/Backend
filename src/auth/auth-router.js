@@ -78,7 +78,7 @@ router.put('/update', jwt.checkToken(), (req, res) => {
 // Delete user, provide a login token in the header.
 router.delete('/remove', jwt.checkToken(), (req, res, next) => {
   const id = req.user.subject;
-console.log(id)
+
   Users.findById(id)
     .then(user => {
       if (user) {
