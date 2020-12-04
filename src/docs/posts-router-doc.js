@@ -27,7 +27,7 @@
     * @apiSuccessExample {json} Success response:
     *     HTTPS 200 OK
     *{
-    *  "posts": [
+    *  "recipes": [
     * {
     *   "id": 1,
     *   "food_name": "Banana and coriander salad",

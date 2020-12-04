@@ -3,23 +3,13 @@ require('dotenv').config();
 const HashFactor = parseInt(process.env.HASH) || 8;
 const validateNewUser = require('./validNewUser');
 const validateLogin = require('./validLoginUser');
-const { check, validationResult } = require('express-validator');
 
 const bcrypt = require('bcryptjs');
 const jwt = require('./middleware/jwtAccess');
 const Users = require('./auth-model');
 
-// POST register new chef
-router.post('/register', [
-  check('username').isLength({ min: 5 }),
-  check('password').isLength({ min: 5 }),
-  check('email').isEmail(),
-], (req, res) => {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
-    }
-
+// POST /api/auth/register register new chef - FUNCTIONAL
+router.post('/register', validateNewUser, (req, res) => {
     const user = req.body;
     const hash = bcrypt.hashSync(user.password, HashFactor);
     user.password = hash;
@@ -28,7 +18,7 @@ router.post('/register', [
       .then(newUser => {
         // console.log(newUser);
         const token = jwt.generateToken(newUser);
-        res.status(201).json({ user: newUser, token});
+        res.status(201).json({ message: `Welcome ${newUser.username}, thanks for joining Chef Portfolio.`, user: newUser, token});
       })
       .catch(err => {
         console.log(err);
@@ -36,7 +26,7 @@ router.post('/register', [
       })
 });
 // validateLogin
-// login user
+// POST /api/auth/login login user - FUNCTIONAL
 router.post('/login', validateLogin, (req, res) => {
   const { username, password } = req.body;
 
@@ -46,7 +36,7 @@ router.post('/login', validateLogin, (req, res) => {
       if (u && bcrypt.compareSync(password, u.password)) {
         const token = jwt.generateToken(u);
 
-        res.status(200).json({ message: `Welcome back ${u.username }`, user: u.username,token});
+        res.status(200).json({ message: `Welcome back ${u.username }`, user: u.username,token, id: u.id});
       } else {
         res.status(401).json({ message: `Wrong login credentials.`})
       }
@@ -57,7 +47,7 @@ router.post('/login', validateLogin, (req, res) => {
     });
 });
 
-// Edit user information PUT
+// PUT /api/auth/update Edit user information - FUNCTIONAL
 router.put('/update', jwt.checkToken(), (req, res) => {
   const userId = req.user.subject;
   const changes = req.body;
@@ -88,7 +78,7 @@ router.put('/update', jwt.checkToken(), (req, res) => {
 // Delete user, provide a login token in the header.
 router.delete('/remove', jwt.checkToken(), (req, res, next) => {
   const id = req.user.subject;
-console.log(id)
+
   Users.findById(id)
     .then(user => {
       if (user) {
